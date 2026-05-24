@@ -1,0 +1,1668 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8" />
+<title>Lion Hills — Презентація</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  @font-face {
+    font-family: 'PP Hatton';
+    src: url('fonts/PPHatton-Medium.otf') format('opentype');
+    font-weight: 400 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Styrene A';
+    src: url('fonts/StyreneA-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Styrene A';
+    src: url('fonts/StyreneA-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Styrene A';
+    src: url('fonts/StyreneA-Bold.otf') format('opentype');
+    font-weight: 600 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  :root {
+    --cream: #F4EFE6;
+    --cream-2: #EBE4D6;
+    --forest: #1F2A24;
+    --forest-2: #2A3830;
+    --sand: #B89968;
+    --sand-soft: #C8AE85;
+    --ink: #1A1815;
+    --muted: #6B665C;
+
+    --type-mega: 188px;
+    --type-display: 132px;
+    --type-title: 92px;
+    --type-subtitle: 52px;
+    --type-lead: 40px;
+    --type-body: 32px;
+    --type-small: 26px;
+    --type-caps: 24px;
+
+    --pad-x: 120px;
+    --pad-y: 110px;
+    --gap-title: 56px;
+    --gap-item: 32px;
+
+    --serif: "PP Hatton", "Times New Roman", serif;
+    --sans: "Styrene A", "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+
+  html, body { margin: 0; padding: 0; background: #000; color: var(--ink); font-family: var(--sans); }
+
+  deck-stage { background: #0a0a0a; }
+  deck-stage section {
+    background: var(--cream);
+    color: var(--ink);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ============== Reusable slide patterns ============== */
+  .slide {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: var(--pad-y) var(--pad-x);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .slide.dark { background: var(--forest); color: var(--cream); }
+  .slide.ink { background: var(--ink); color: var(--cream); }
+  .slide.image { padding: 0; }
+
+  /* Page header — appears on most content slides */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--sans);
+    font-size: 24px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .slide.dark .header,
+  .slide.ink .header { color: var(--sand-soft); }
+  .header .brand { letter-spacing: 0.4em; }
+
+  /* Eyebrow (small tag above title) */
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 24px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--sand);
+    font-weight: 500;
+  }
+
+  /* Display / titles */
+  .display {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: var(--type-display);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: var(--type-title);
+    line-height: 1.0;
+    letter-spacing: -0.005em;
+    margin: 0;
+  }
+  .subtitle {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: var(--type-subtitle);
+    line-height: 1.15;
+    margin: 0;
+  }
+  .lead {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: var(--type-lead);
+    line-height: 1.3;
+    margin: 0;
+    color: inherit;
+  }
+  .body {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: var(--type-body);
+    line-height: 1.45;
+    margin: 0;
+    color: inherit;
+    max-width: 28ch;
+  }
+  .small {
+    font-family: var(--sans);
+    font-size: 26px;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+  .slide.dark .small,
+  .slide.ink .small { color: #B7B0A0; }
+
+  .caps {
+    font-family: var(--sans);
+    font-size: 24px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 64px;
+    color: var(--sand);
+    line-height: 1;
+  }
+
+  /* Footer brand strip */
+  .footer {
+    display: none;
+  }
+  .header {
+    display: none;
+  }
+  /* Re-enable on dividers/cover where they sit over imagery and are part of composition? No — user wants them gone everywhere. */
+
+  /* Rule */
+  .rule { height: 1px; background: currentColor; opacity: 0.25; width: 100%; }
+  .rule-sand { height: 1px; background: var(--sand); width: 80px; }
+
+  /* Logo word-mark */
+  .wordmark {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 30px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+  }
+  .wordmark .dot {
+    display: inline-block;
+    width: 6px; height: 6px; background: var(--sand); border-radius: 50%;
+    transform: translateY(-6px);
+    margin: 0 6px;
+  }
+
+  /* ============== Image placeholders ============== */
+  .img {
+    width: 100%;
+    height: 100%;
+    background:
+      repeating-linear-gradient(45deg,
+        rgba(31,42,36,0.07) 0px,
+        rgba(31,42,36,0.07) 2px,
+        rgba(31,42,36,0.03) 2px,
+        rgba(31,42,36,0.03) 24px),
+      linear-gradient(160deg, #D9CFB7 0%, #B7A98A 55%, #8A7E60 100%);
+    color: var(--ink);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+  .img .tag {
+    font-family: var(--mono);
+    font-size: 24px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.85);
+    color: var(--ink);
+    padding: 10px 14px;
+    margin: 18px;
+    border-radius: 2px;
+  }
+  .img.dark {
+    background:
+      repeating-linear-gradient(45deg,
+        rgba(255,255,255,0.04) 0px,
+        rgba(255,255,255,0.04) 2px,
+        transparent 2px,
+        transparent 24px),
+      linear-gradient(160deg, #3B4940 0%, #243029 60%, #161E1A 100%);
+    color: var(--cream);
+  }
+  .img.dark .tag {
+    background: rgba(20,20,18,0.7);
+    color: var(--cream);
+  }
+  .img.sky {
+    background:
+      repeating-linear-gradient(45deg,
+        rgba(255,255,255,0.05) 0px,
+        rgba(255,255,255,0.05) 2px,
+        transparent 2px,
+        transparent 24px),
+      linear-gradient(180deg, #6B8AA4 0%, #8FA6B5 40%, #C8B98F 90%, #B7A276 100%);
+  }
+  .img.forest-mist {
+    background:
+      repeating-linear-gradient(45deg,
+        rgba(255,255,255,0.04) 0px,
+        rgba(255,255,255,0.04) 2px,
+        transparent 2px,
+        transparent 24px),
+      linear-gradient(160deg, #4F6356 0%, #2F4038 50%, #1A2520 100%);
+    color: var(--cream);
+  }
+  .img.forest-mist .tag { background: rgba(20,20,18,0.7); color: var(--cream); }
+
+  /* ============== Specific slide layouts ============== */
+  .cover {
+    padding: 0;
+    color: var(--cream);
+  }
+  .cover .bg {
+    position: absolute; inset: 0;
+  }
+  .cover-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .cover-title {
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .cover .scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,12,10,0.55) 0%, rgba(10,12,10,0.15) 35%, rgba(10,12,10,0.15) 60%, rgba(10,12,10,0.7) 100%);
+  }
+  .cover .content {
+    position: relative;
+    z-index: 2;
+    width: 100%; height: 100%;
+    box-sizing: border-box;
+    padding: var(--pad-y) var(--pad-x);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .cover-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 56px;
+  }
+  .cover-slogan {
+    font-family: var(--sans) !important;
+    font-style: normal !important;
+    text-transform: uppercase;
+    letter-spacing: 0.42em;
+    font-weight: 500;
+    font-size: 28px;
+    opacity: 0.95;
+  }
+  .cover .display {
+    font-size: 240px;
+    letter-spacing: -0.02em;
+    font-weight: 300;
+    line-height: 0.9;
+  }
+  .cover .tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 44px;
+    font-weight: 300;
+    opacity: 0.92;
+  }
+
+  /* Two-column */
+  .twocol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    flex: 1;
+    align-items: stretch;
+  }
+  .twocol-7-5 {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 80px;
+    flex: 1;
+    align-items: stretch;
+  }
+  .twocol-5-7 {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 80px;
+    flex: 1;
+    align-items: stretch;
+  }
+
+  .col { display: flex; flex-direction: column; }
+  .col.center { justify-content: center; }
+  .col.between { justify-content: space-between; }
+  .col.end { justify-content: flex-end; }
+
+  /* Pillar list (5 китів) */
+  .pillars { display: flex; flex-direction: column; gap: 20px; }
+  .pillar {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 24px;
+    align-items: baseline;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(31,42,36,0.18);
+  }
+  .pillar:last-child { border-bottom: none; }
+  .pillar .n {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 60px;
+    color: var(--sand);
+    line-height: 1;
+  }
+  .pillar .name {
+    font-family: var(--serif);
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.05;
+  }
+  .pillar .desc {
+    font-family: var(--sans);
+    font-size: 24px;
+    color: var(--muted);
+    margin-top: 8px;
+    max-width: 36ch;
+  }
+
+  /* Section divider */
+  .section-divider {
+    position: relative;
+    padding: 0;
+    color: var(--cream);
+  }
+  .section-divider .bg { position: absolute; inset: 0; }
+  .section-divider .scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,12,10,0.5) 0%, rgba(10,12,10,0.25) 50%, rgba(10,12,10,0.65) 100%);
+  }
+  .section-divider .content {
+    position: relative; z-index: 2;
+    width: 100%; height: 100%;
+    box-sizing: border-box;
+    padding: var(--pad-y) var(--pad-x);
+    display: flex; flex-direction: column; justify-content: flex-start; gap: 32px;
+  }
+  .section-divider .content > div:empty { display: none; }
+  .section-divider .num-big {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 240px;
+    line-height: 0.9;
+    color: var(--sand-soft);
+    opacity: 0.95;
+  }
+  .section-divider .sect-title {
+    font-family: var(--serif);
+    font-size: 156px;
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+  }
+  .section-divider .sect-sub {
+    font-family: var(--sans);
+    font-size: 22px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sand-soft);
+    font-weight: 500;
+  }
+
+  /* Pull quote */
+  .pullquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 88px;
+    line-height: 1.1;
+    letter-spacing: -0.005em;
+    max-width: 22ch;
+    text-wrap: pretty;
+  }
+  .pullquote .open { color: var(--sand); display: inline-block; transform: translateY(8px); margin-right: 6px; }
+  .attribution {
+    font-family: var(--sans);
+    font-size: 26px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .slide.dark .attribution,
+  .slide.ink .attribution { color: var(--sand-soft); }
+
+  /* Bullet list with subtle markers */
+  .feat {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .feat li {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 24px;
+    align-items: baseline;
+    font-family: var(--sans);
+    font-size: 30px;
+    line-height: 1.35;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(31,42,36,0.14);
+  }
+  .feat li:last-child { border-bottom: none; }
+  .feat li::before {
+    content: "";
+    display: block;
+    width: 10px; height: 10px;
+    background: var(--sand);
+    border-radius: 50%;
+    align-self: center;
+  }
+  .slide.dark .feat li,
+  .slide.ink .feat li {
+    border-bottom-color: rgba(255,255,255,0.12);
+  }
+
+  /* Big stat */
+  .stat-num {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 360px;
+    line-height: 0.85;
+    letter-spacing: -0.03em;
+  }
+  .stat-unit {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 64px;
+    color: var(--sand);
+  }
+
+  /* Stat row (three) */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; }
+  .stat .v {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 152px;
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+  }
+  .stat .v .u { font-size: 56px; color: var(--sand); font-style: italic; font-weight: 300; margin-left: 8px; }
+  .stat .l {
+    font-family: var(--sans);
+    font-size: 24px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-top: 18px;
+  }
+  .slide.dark .stat .l,
+  .slide.ink .stat .l { color: var(--sand-soft); }
+
+
+  /* Amenity full-bleed slides — desc bottom right */
+  .amenity-desc {
+    position: absolute;
+    right: var(--pad-x);
+    bottom: var(--pad-y);
+    z-index: 3;
+    font-family: var(--sans);
+    font-size: 22px;
+    line-height: 1.45;
+    color: rgba(244,239,230,0.92);
+    max-width: 34ch;
+    text-align: right;
+  }
+
+  /* Autonomy stats (slide 26) — Styrene sans */
+  .autonomy-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 0 60px;
+    align-items: start;
+  }
+  .autonomy-stats .stat {
+    display: contents;
+  }
+  .autonomy-stats .stat .v {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 96px;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    grid-row: 1;
+    align-self: end;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .autonomy-stats .stat .v .u {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 56px;
+    color: var(--sand);
+    font-style: normal;
+  }
+  .autonomy-stats .stat .l {
+    grid-row: 2;
+    margin-top: 24px;
+    align-self: start;
+  }
+  .autonomy-stats .stat .small {
+    grid-row: 3;
+    margin-top: 14px;
+    align-self: start;
+  }
+  /* Column placement */
+  .autonomy-stats .stat:nth-child(1) > * { grid-column: 1; }
+  .autonomy-stats .stat:nth-child(2) > * { grid-column: 2; }
+  .autonomy-stats .stat:nth-child(3) > * { grid-column: 3; }
+
+  /* Placeholder cards (slide 23, awaiting real photos) */
+  .placeholder-card {
+    background: linear-gradient(160deg, #D9CFB7 0%, #B7A98A 55%, #8A7E60 100%);
+    position: relative;
+  }
+  .placeholder-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(45deg,
+      rgba(31,42,36,0.07) 0px,
+      rgba(31,42,36,0.07) 2px,
+      transparent 2px,
+      transparent 24px);
+    pointer-events: none;
+  }
+  .placeholder-tag {
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    z-index: 2;
+    font-family: var(--mono);
+    font-size: 16px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.85);
+    color: var(--ink);
+    padding: 8px 12px;
+    border-radius: 2px;
+  }
+
+  /* Infrastructure grid (slide 14) */
+  .infra-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+    flex: 1;
+    min-height: 0;
+  }
+  .infra-card {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    color: var(--cream);
+  }
+  .infra-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20,22,20,0) 45%, rgba(20,22,20,0.78) 100%);
+    pointer-events: none;
+  }
+  .infra-label {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 22px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .infra-n {
+    font-family: var(--mono);
+    font-size: 18px;
+    letter-spacing: 0.3em;
+    color: var(--sand-soft);
+    margin-bottom: 4px;
+  }
+  .infra-name {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 1.1;
+    color: var(--cream);
+  }
+  .infra-note {
+    font-family: var(--sans);
+    font-size: 18px;
+    color: rgba(244,239,230,0.82);
+    line-height: 1.35;
+    margin-top: 4px;
+    max-width: 28ch;
+  }
+
+  /* Materials grid */
+  .materials { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 64px; }
+  .material {
+    border-top: 1px solid rgba(31,42,36,0.2);
+    padding-top: 18px;
+  }
+  .slide.dark .material { border-top-color: rgba(255,255,255,0.18); }
+  .material .name {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 1.1;
+  }
+  .material .desc {
+    font-family: var(--sans);
+    font-size: 24px;
+    color: var(--muted);
+    margin-top: 8px;
+    letter-spacing: 0.04em;
+  }
+  .slide.dark .material .desc,
+  .slide.ink .material .desc { color: #B7B0A0; }
+
+  /* Seasons (4-col) */
+  .seasons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; flex: 1; align-items: stretch; }
+  .season { display: flex; flex-direction: column; }
+  .season .photo { flex: 1; min-height: 0; }
+  .season .label {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 44px;
+    margin-top: 28px;
+  }
+  .season .note {
+    font-family: var(--sans);
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  /* Helpers */
+  .stack { display: flex; flex-direction: column; }
+  .gap-title > * + * { margin-top: var(--gap-title); }
+  .gap-item > * + * { margin-top: var(--gap-item); }
+  .flex1 { flex: 1; }
+  .mt-auto { margin-top: auto; }
+  .mb-auto { margin-bottom: auto; }
+
+  /* Side rail with section number */
+  .siderail {
+    position: absolute;
+    left: 48px;
+    top: 0; bottom: 0;
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+  }
+  .siderail .vline { writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--sans); font-size: 18px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .slide.dark .siderail .vline,
+  .slide.ink .siderail .vline { color: var(--sand-soft); }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 — COVER -->
+  <section data-label="01 Cover">
+    <div class="slide cover">
+      <img class="bg cover-video" src="assets/cover-poster.jpeg" alt="" />
+      <div class="scrim"></div>
+      <div class="content">
+        <div class="stack cover-stack">
+          <div class="display cover-title">LION HILLS</div>
+          <div class="tagline cover-slogan">Життя на висоті</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — Pull quote -->
+  <section data-label="04 Quote builds for self">
+    <div class="slide dark" style="justify-content:space-between;">
+      <div class="header">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>I&nbsp;·&nbsp;Історія</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:60px; max-width:1500px;">
+        <p class="pullquote"><span class="open">«</span>Я будував це місце для своєї родини. Тому тут немає компромісів.»</p>
+        <div style="display:flex; align-items:center; gap:24px;">
+          <span class="rule-sand"></span>
+          <span class="attribution">Лев Парцхаладзе&nbsp;·&nbsp;Керуючий партнер</span>
+        </div>
+      </div>
+      <div class="footer">
+        <span>02&nbsp;·&nbsp;Цитата</span>
+        <span>Lion&nbsp;Hills</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 — Concept: 5 китів -->
+  <section data-label="05 Concept 5 pillars">
+    <div class="slide">
+      <div class="header">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>The Concept</span>
+      </div>
+      <div class="twocol" style="margin-top:60px; gap:120px;">
+        <div class="col" style="gap:40px; justify-content:flex-start;">
+          <div class="eyebrow">Концепція</div>
+          <h1 class="display" style="font-size:132px;">П'ять<br/>китів.</h1>
+        </div>
+        <div class="col">
+          <ol class="pillars">
+            <li class="pillar">
+              <div class="n">01</div>
+              <div>
+                <div class="name">Природа і краєвиди</div>
+                <div class="desc">Видові пагорби в оточенні Голосіївського заповідника.</div>
+              </div>
+            </li>
+            <li class="pillar">
+              <div class="n">02</div>
+              <div>
+                <div class="name">Місцерозташування</div>
+                <div class="desc">15 хвилин до Печерська. Одна дорога без світлофорів.</div>
+              </div>
+            </li>
+            <li class="pillar">
+              <div class="n">03</div>
+              <div>
+                <div class="name">Архітектура</div>
+                <div class="desc">Каскадна композиція. Краєвид + приватність.</div>
+              </div>
+            </li>
+            <li class="pillar">
+              <div class="n">04</div>
+              <div>
+                <div class="name">Інфраструктура</div>
+                <div class="desc">Спа, спортзал, Infinity pool, ресторан Belkin, Kids Club.</div>
+              </div>
+            </li>
+            <li class="pillar">
+              <div class="n">05</div>
+              <div>
+                <div class="name">Вілли</div>
+                <div class="desc">Автономні, з натуральних матеріалів. Тераси на 9 місяців на рік.</div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 — Section I: Природа і краєвиди -->
+  <section data-label="06 Section 1 Nature">
+    <div class="slide section-divider">
+      <img class="bg" src="assets/nature-divider.jpeg" alt="" style="width:100%; height:100%; object-fit:cover;" />
+      <div class="scrim"></div>
+      <div class="content">
+        <div class="header" style="color:rgba(244,239,230,0.8);">
+          <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+          <span>Розділ&nbsp;·&nbsp;01 / 05</span>
+        </div>
+        <div></div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:80px;">
+          <div class="stack" style="gap:32px;">
+            <div class="num-big">01</div>
+            <div class="sect-title">Природа<br/>і краєвиди.</div>
+          </div>
+          <div class="sect-sub" style="max-width:32ch; text-align:right; line-height:1.5;">Голосіївський заповідник<br/>Видові пагорби</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 — Nature content -->
+  <section data-label="07 Nature content">
+    <div class="slide section-divider" style="color:var(--cream);">
+      <video class="bg" autoplay loop muted playsinline preload="auto" style="width:100%; height:100%; object-fit:cover;">
+        <source src="assets/nature-content.mp4" type="video/mp4" />
+      </video>
+      <div class="scrim" style="background:linear-gradient(90deg, rgba(10,14,12,0.78) 0%, rgba(10,14,12,0.5) 45%, rgba(10,14,12,0.1) 80%, rgba(10,14,12,0.3) 100%);"></div>
+      <div class="content" style="justify-content:flex-start; align-items:flex-start; padding-top:120px;">
+        <div class="stack" style="gap:40px; max-width:680px;">
+          <div class="eyebrow" style="color:var(--sand-soft);">01&nbsp;·&nbsp;Природа</div>
+          <h2 class="title" style="font-size:88px; line-height:1;">Вілли стоять<br/>на видових пагорбах.</h2>
+          <p class="body" style="max-width:34ch; color:#E5E0D2;">
+            На всій території — авторський ландшафтний дизайн із великою кількістю дерев і квітучих рослин.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 — Section II: Місцерозташування — video bg -->
+  <section data-label="08 Section 2 Location">
+    <div class="slide section-divider">
+      <video class="bg" autoplay loop muted playsinline preload="auto" style="width:100%; height:100%; object-fit:cover;">
+        <source src="assets/cover.mp4" type="video/mp4" />
+      </video>
+      <div class="scrim"></div>
+      <div class="content">
+        <div></div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:80px;">
+          <div class="stack" style="gap:32px;">
+            <div class="num-big">02</div>
+            <div class="sect-title">Місце-<br/>розташування.</div>
+          </div>
+          <div class="sect-sub" style="text-align:right; line-height:1.5; white-space:nowrap;">Лісники&nbsp;·&nbsp;Міська межа</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 — Lisnyky, on the edge -->
+  <section data-label="09 Lisnyky edge">
+    <div class="slide dark">
+      <div class="header">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>02&nbsp;·&nbsp;Місцерозташування</span>
+      </div>
+      <div class="twocol" style="margin-top:80px; gap:120px;">
+        <div class="col" style="justify-content:center; gap:48px;">
+          <div class="eyebrow">Лісники</div>
+          <h2 class="title">Буквально<br/>на міській межі.</h2>
+          <p class="body" style="max-width:30ch; color:#D9D4C7;">
+            За нами починається заповідник. Перед нами — місто.
+          </p>
+        </div>
+        <div class="col">
+          <img src="assets/location-map-v2.png" alt="Карта Lion Hills" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 — Big stat: 15 хв -->
+  <section data-label="10 Stat 15 min">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/kyiv-skyline.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.55) 0%, rgba(15,18,16,0.2) 40%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between;">
+        <div></div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:80px;">
+          <div class="col" style="gap:60px; max-width:24ch;">
+            <div class="eyebrow" style="color:var(--sand-soft); white-space:nowrap;">Від Печерська</div>
+            <div style="display:flex; flex-direction:column; gap:0; line-height:1; color:var(--cream);">
+              <span class="stat-num" style="font-size:340px;">15</span>
+              <span class="stat-unit" style="margin-top:8px; padding-left:8px;">хвилин</span>
+            </div>
+          </div>
+          <p class="body" style="max-width:22ch; color:#E8E2D3; text-align:right; font-size:32px; line-height:1.35;">
+            Без світлофорів.<br/>Одна дорога.<br/>Прогнозований маршрут.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 — Section III: Архітектура -->
+  <section data-label="11 Section 3 Architecture">
+    <div class="slide section-divider">
+      <video class="bg" autoplay loop muted playsinline preload="auto" style="width:100%; height:100%; object-fit:cover;">
+        <source src="assets/location-bg.mp4" type="video/mp4" />
+      </video>
+      <div class="scrim"></div>
+      <div class="content" style="justify-content:flex-start; padding-top:140px;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:80px;">
+          <div class="stack" style="gap:32px;">
+            <div class="num-big">03</div>
+            <div class="sect-title">Архітектура.</div>
+          </div>
+          <div class="sect-sub" style="max-width:24ch; text-align:right; line-height:1.5; padding-bottom:24px;">Каскадна композиція&nbsp;·&nbsp;Приватність</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 — Cascade architecture -->
+  <section data-label="12 Cascade architecture">
+    <div class="slide">
+      <div class="header">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>03&nbsp;·&nbsp;Архітектура</span>
+      </div>
+      <div class="twocol-5-7" style="margin-top:60px;">
+        <div class="col" style="gap:44px; justify-content:center;">
+          <div class="eyebrow">03&nbsp;·&nbsp;Архітектура</div>
+          <h2 class="title">Каскадна архітектура.</h2>
+          <p class="body" style="max-width:30ch;">
+            З кожної вілли можна насолоджуватися красивими видами, водночас зберігаючи свою приватність.
+          </p>
+          <div class="rule-sand"></div>
+          <p class="body" style="max-width:30ch;">
+            Це й відображає унікальність нашого проєкту.
+          </p>
+        </div>
+        <div class="col">
+          <video autoplay loop muted playsinline preload="auto" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <source src="assets/architecture.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 — Section IV: Інфраструктура -->
+  <section data-label="13 Section 4 Infrastructure">
+    <div class="slide section-divider">
+      <video class="bg" autoplay loop muted playsinline preload="auto" style="width:100%; height:100%; object-fit:cover;">
+        <source src="assets/infrastructure.mp4" type="video/mp4" />
+      </video>
+      <div class="scrim"></div>
+      <div class="content">
+        <div></div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:80px;">
+          <div class="stack" style="gap:32px;">
+            <div class="num-big">04</div>
+            <div class="sect-title">Інфра-<br/>структура.</div>
+          </div>
+          <div class="sect-sub" style="max-width:20ch; text-align:right; line-height:1.5;">Equides&nbsp;·&nbsp;Спа&nbsp;·&nbsp;Сервіс</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 — Within walking distance -->
+  <section data-label="14 Walking distance">
+    <div class="slide">
+      <div class="header">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>04&nbsp;·&nbsp;Інфраструктура</span>
+      </div>
+      <div class="twocol" style="margin-top:60px;">
+        <div class="col" style="gap:40px; justify-content:center;">
+          <div class="eyebrow">У пішій доступності</div>
+          <h2 class="title" style="font-size:80px;">Усе важливе —<br/>у кількох хвилинах<br/>від дому.</h2>
+        </div>
+        <div class="col" style="gap:0;">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0; border-top:1px solid rgba(31,42,36,0.18); border-left:1px solid rgba(31,42,36,0.18);">
+            <div style="padding:32px 28px; border-right:1px solid rgba(31,42,36,0.18); border-bottom:1px solid rgba(31,42,36,0.18);">
+              <div class="caps" style="color:var(--sand);">Покупки</div>
+              <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25;">Сільпо<br/>MANUFAKTURA</div>
+            </div>
+            <div style="padding:32px 28px; border-right:1px solid rgba(31,42,36,0.18); border-bottom:1px solid rgba(31,42,36,0.18);">
+              <div class="caps" style="color:var(--sand);">Медицина</div>
+              <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25;">Сінево<br/>Цілодобова клініка</div>
+            </div>
+            <div style="padding:32px 28px; border-right:1px solid rgba(31,42,36,0.18); border-bottom:1px solid rgba(31,42,36,0.18);">
+              <div class="caps" style="color:var(--sand);">Освіта</div>
+              <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25;">Американська школа<br/>Приватні садочки</div>
+            </div>
+            <div style="padding:32px 28px; border-right:1px solid rgba(31,42,36,0.18); border-bottom:1px solid rgba(31,42,36,0.18);">
+              <div class="caps" style="color:var(--sand);">Спорт</div>
+              <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25;">Olympic Village<br/>Equides Club</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer mt-auto" style="margin-top:60px;">
+        <span>04&nbsp;·&nbsp;Інфраструктура</span>
+        <span>Lion&nbsp;Hills</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 — Equides through the road -->
+  <section data-label="15 Equides">
+    <div class="slide" style="padding:80px var(--pad-x);">
+      <div class="header">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>04&nbsp;·&nbsp;Інфраструктура</span>
+      </div>
+      <div class="stack" style="gap:20px; margin-top:32px;">
+        <div class="eyebrow">Через дорогу — Equides</div>
+        <h2 class="title" style="font-size:64px; max-width:28ch;">Вийшли за ворота —<br/>і ви вже там.</h2>
+      </div>
+      <div class="infra-grid">
+        <div class="infra-card" style="background-image:url('assets/equides-golf.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Гольф‑поле на 18 лунок</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/equides-horse.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Два кінних клуби</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/equides-spa.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Спа</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/equides-restaurant.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Ресторан</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/equides-padel.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">9 падел‑кортів &amp; стрілецький тир</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/equides-hotel.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Готель 5★</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer mt-auto" style="margin-top:40px;">
+        <span>«Гольф або падел змінює ставлення до активного відпочинку»</span>
+        <span>Lion&nbsp;Hills</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 — Internal infrastructure -->
+  <section data-label="16 Internal infrastructure">
+    <div class="slide" style="padding:80px var(--pad-x);">
+      <div class="stack" style="gap:20px;">
+        <div class="eyebrow">На території комплексу</div>
+        <h2 class="title" style="font-size:64px; max-width:28ch;">Частина середовища,<br/>заради якого переїжджають.</h2>
+      </div>
+      <div class="infra-grid">
+        <div class="infra-card" style="background-image:url('assets/infra-spa.png');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Спа</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/infra-gym.png');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Спортзал</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/infra-pool.png');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Infinity pool</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/infra-restaurant.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Ресторан Belkin</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/infra-yoga.png');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Кімната для йоги</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/infra-kids.png');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Kids Club</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16a-f — Full-bleed amenity slides -->
+  <section data-label="16a Spa fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/infra-spa.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">I&nbsp;·&nbsp;Інфраструктура</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Спа.</h2></div>
+        <p class="amenity-desc">Концепція сауни з панорамним вікном на ліс. П'ятниця, тиша і нікуди не потрібно їхати.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="16b Gym fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/infra-gym.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">II&nbsp;·&nbsp;Інфраструктура</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Спортзал.</h2></div>
+        <p class="amenity-desc">Спортивна зала з панорамним вікном на пагорби і ранковий туман.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="16c Pool fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/infra-pool.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">III&nbsp;·&nbsp;Інфраструктура</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Infinity pool.</h2></div>
+        <p class="amenity-desc">Басейн із краєвидом на Голосіївський заповідник на світанку.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="16d Restaurant fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/infra-restaurant.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">IV&nbsp;·&nbsp;Інфраструктура</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Ресторан Belkin.</h2></div>
+        <p class="amenity-desc">Ресторан із панорамним майданчиком. Сусід, який вже відомий у Києві.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="16e Yoga fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/infra-yoga.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">V&nbsp;·&nbsp;Інфраструктура</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Кімната для йоги.</h2></div>
+        <p class="amenity-desc">Тихий простір над лісом, де ранок починається з практики.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="16f Kids fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/infra-kids.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">VI&nbsp;·&nbsp;Інфраструктура</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Kids Club.</h2></div>
+        <p class="amenity-desc">Простір з аніматором. Діти живуть своїм життям — поруч і безпечно.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 18 — Section V: Вілли -->
+  <section data-label="18 Section 5 Villas">
+    <div class="slide section-divider">
+      <img class="bg" src="assets/villas-hero.jpg" alt="" style="width:100%; height:100%; object-fit:cover;" />
+      <div class="scrim"></div>
+      <div class="content" style="justify-content:flex-end; padding-bottom:24px;">
+        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+          <h2 class="sect-title" style="color:#FFFFFF; text-align:right; line-height:0.95; margin:0;">Уяви<br/>ідеальну віллу</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 21b — Villas divider (slide 9 style with video) -->
+  <section data-label="21b Villas divider video">
+    <div class="slide section-divider">
+      <video class="bg" autoplay loop muted playsinline preload="auto" style="width:100%; height:100%; object-fit:cover;">
+        <source src="assets/villas-bird.mp4" type="video/mp4" />
+      </video>
+      <div class="scrim"></div>
+      <div class="content" style="justify-content:flex-start; padding-top:140px;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:80px;">
+          <div class="stack" style="gap:32px;">
+            <div class="num-big">05</div>
+            <div class="sect-title">Вілли.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 22b — Pure video slide -->
+  <section data-label="22b Villas video only">
+    <div class="slide" style="padding:0; cursor:pointer;">
+      <video id="villas-video" autoplay loop muted playsinline preload="auto" style="width:100%; height:100%; object-fit:cover; display:block;">
+        <source src="assets/villas-horizontal.mp4" type="video/mp4" />
+      </video>
+      <div id="unmute-hint" style="position:absolute; right:32px; bottom:32px; padding:14px 22px; background:rgba(20,22,20,0.6); color:var(--cream); font-family:var(--sans); font-size:18px; letter-spacing:0.2em; text-transform:uppercase; border-radius:2px; pointer-events:none; backdrop-filter:blur(6px); transition:opacity .4s;">🔊 Натисніть для звуку</div>
+    </div>
+    <script>
+      (function(){
+        var slide = document.currentScript.parentElement;
+        var video = slide.querySelector('video');
+        var hint = slide.querySelector('#unmute-hint');
+        slide.addEventListener('click', function(){
+          if (video) {
+            video.muted = false;
+            video.play().catch(function(){});
+            if (hint) hint.style.opacity = '0';
+          }
+        });
+      })();
+    </script>
+  </section>
+
+  <!-- 23 — Anatomy of villa (grid like slide 14) -->
+  <section data-label="23 Villa anatomy grid">
+    <div class="slide" style="padding:80px var(--pad-x);">
+      <div class="stack" style="gap:20px;">
+        <div class="eyebrow">Анатомія вілли</div>
+      </div>
+      <div class="infra-grid" style="grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr);">
+        <div class="infra-card" style="overflow:hidden;">
+          <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+            <source src="assets/terrace.mp4" type="video/mp4" />
+          </video>
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Тераса 9 місяців на рік</div>
+          </div>
+        </div>
+        <div class="infra-card" style="overflow:hidden;">
+          <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+            <source src="assets/privacy.mp4" type="video/mp4" />
+          </video>
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Приватність</div>
+          </div>
+        </div>
+        <div class="infra-card" style="overflow:hidden;">
+          <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+            <source src="assets/windows.mp4" type="video/mp4" />
+          </video>
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Вікна у повний зріст</div>
+          </div>
+        </div>
+        <div class="infra-card" style="overflow:hidden;">
+          <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+            <source src="assets/parking.mp4" type="video/mp4" />
+          </video>
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Окремий паркінг</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 23b — Master plan -->
+  <section data-label="23b Master plan">
+    <div class="slide" style="padding:0; position:relative; background:#FFFFFF;">
+      <img src="assets/master-plan.png" alt="Генеральний план — Lion Hills" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center;" />
+      <div style="position:absolute; top:48px; left:var(--pad-x); right:var(--pad-x); display:flex; justify-content:flex-end; align-items:center; z-index:2; font-family:var(--sans); font-size:18px; font-weight:500; text-transform:uppercase;">
+        <span style="letter-spacing:0.18em; color:var(--ink);">Генплан</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 24a-d — Villa anatomy full-bleed video slides -->
+  <section data-label="24a Terrace fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        <source src="assets/terrace.mp4" type="video/mp4" />
+      </video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Анатомія вілли</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Тераса.</h2></div>
+        <p class="amenity-desc">Закрита тераса 9 місяців на рік. Місце, де ви проводите більшу частину часу з родиною й друзями.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="24b Privacy fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        <source src="assets/privacy.mp4" type="video/mp4" />
+      </video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Анатомія вілли</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Приватність.</h2></div>
+        <p class="amenity-desc">Продумане озеленення та архітектура формують приватний простір життя. Приватність закладена в саму концепцію резиденції.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="24c Windows fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        <source src="assets/windows.mp4" type="video/mp4" />
+      </video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Анатомія вілли</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Вікна.</h2></div>
+        <p class="amenity-desc">Алюмінієві вітражі з розсувною системою.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="24d Parking fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        <source src="assets/parking.mp4" type="video/mp4" />
+      </video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Анатомія вілли</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Паркінг.</h2></div>
+        <p class="amenity-desc">Закритий гараж для двох авто та додатковий простір для гостей.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 29 — Choose your villa (grid of villa types) -->
+  <section data-label="29 Choose your villa">
+    <div class="slide" style="padding:80px var(--pad-x);">
+      <div class="stack" style="gap:20px;">
+        <div class="eyebrow">Оберіть свою віллу</div>
+      </div>
+      <div class="infra-grid" style="grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr);">
+        <div class="infra-card" style="overflow:hidden;">
+          <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+            <source src="assets/villa-1.mp4" type="video/mp4" />
+          </video>
+          <div class="infra-overlay"></div>
+          <div class="infra-label" style="flex-direction:row; align-items:flex-end; justify-content:space-between; gap:24px;">
+            <div class="infra-name">Вілла · Тип 1</div>
+            <div style="font-family:var(--serif); font-style:italic; font-weight:300; font-size:64px; line-height:1; color:var(--sand-soft);">250&nbsp;м²</div>
+          </div>
+        </div>
+        <div class="infra-card" style="overflow:hidden;">
+          <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+            <source src="assets/villa-2.mp4" type="video/mp4" />
+          </video>
+          <div class="infra-overlay"></div>
+          <div class="infra-label" style="flex-direction:row; align-items:flex-end; justify-content:space-between; gap:24px;">
+            <div class="infra-name">Вілла · Тип 2</div>
+            <div style="font-family:var(--serif); font-style:italic; font-weight:300; font-size:64px; line-height:1; color:var(--sand-soft);">255&nbsp;м²</div>
+          </div>
+        </div>
+        <div class="infra-card" style="overflow:hidden;">
+          <img src="assets/villa-3.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+          <div class="infra-overlay"></div>
+          <div class="infra-label" style="flex-direction:row; align-items:flex-end; justify-content:space-between; gap:24px;">
+            <div class="infra-name">Вілла · Тип 4</div>
+            <div style="font-family:var(--serif); font-style:italic; font-weight:300; font-size:64px; line-height:1; color:var(--sand-soft);">400&nbsp;м²</div>
+          </div>
+        </div>
+        <div class="infra-card" style="overflow:hidden;">
+          <img src="assets/villa-4.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+          <div class="infra-overlay"></div>
+          <div class="infra-label" style="flex-direction:row; align-items:flex-end; justify-content:space-between; gap:24px;">
+            <div class="infra-name">Вілла · Тип 5</div>
+            <div style="font-family:var(--serif); font-style:italic; font-weight:300; font-size:64px; line-height:1; color:var(--sand-soft);">500&nbsp;м²</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 29a — Villa Type 1 fullbleed -->
+  <section data-label="29a Villa Type 1 fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/villa-1.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Оберіть свою віллу</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Вілла · Тип&nbsp;1.</h2></div>
+        <p class="amenity-desc">250&nbsp;м². Компактна форма, продумане планування, фокус на терасу та краєвид.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 29a-plan — Villa Type 1 floor plan -->
+  <section data-label="29a Villa Type 1 plan">
+    <div class="slide" style="padding:0; position:relative; background:#FFFFFF;">
+      <img src="assets/villa-1-plan.png" alt="Планування — Вілла Тип 1" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center;" />
+    </div>
+  </section>
+
+  <!-- 29b — Villa Type 2 fullbleed -->
+  <section data-label="29b Villa Type 2 fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/villa-2.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Оберіть свою віллу</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Вілла · Тип&nbsp;2.</h2></div>
+        <p class="amenity-desc">255&nbsp;м². Розширена тераса й більше світла у спільних зонах.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 29b-plan — Villa Type 2 floor plan -->
+  <section data-label="29b Villa Type 2 plan">
+    <div class="slide" style="padding:0; position:relative; background:#FFFFFF;">
+      <img src="assets/villa-2-plan.png" alt="Планування — Вілла Тип 2" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center;" />
+    </div>
+  </section>
+
+  <!-- 29c — Villa Type 3 fullbleed -->
+  <section data-label="29c Villa Type 3 fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/villa-3.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Оберіть свою віллу</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Вілла · Тип&nbsp;4.</h2></div>
+        <p class="amenity-desc">400&nbsp;м². Простір для родини: окремі зони відпочинку, кабінет, гостьова спальня.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 29c-plan — Villa Type 3 floor plan -->
+  <section data-label="29c Villa Type 3 plan">
+    <div class="slide" style="padding:0; position:relative; background:#FFFFFF;">
+      <img src="assets/villa-3-plan.png" alt="Планування — Вілла Тип 3" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center;" />
+    </div>
+  </section>
+
+  <!-- 29d — Villa Type 4 fullbleed -->
+  <section data-label="29d Villa Type 4 fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/villa-4.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Оберіть свою віллу</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Вілла · Тип&nbsp;5.</h2></div>
+        <p class="amenity-desc">500&nbsp;м². Флагманська вілла: максимум приватності, приміщень і простору під сценарії.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 29d-plan — Villa Type 4 floor plan -->
+  <section data-label="29d Villa Type 4 plan">
+    <div class="slide" style="padding:0; position:relative; background:#FFFFFF;">
+      <img src="assets/villa-4-plan.png" alt="Планування — Вілла Тип 4" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center;" />
+    </div>
+  </section>
+
+  <!-- 38a — Villa Features (annotated render) -->
+  <section data-label="38a Villa features">
+    <div class="slide" style="padding:0; position:relative; background:#FFFFFF;">
+      <img src="assets/villa-features-spread.png" alt="Villa features" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center;" />
+    </div>
+  </section>
+
+  <!-- 22 — Autonomy (stats) -->
+  <section data-label="22 Autonomy">
+    <div class="slide">
+      <div class="header">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>05&nbsp;·&nbsp;Вілли</span>
+      </div>
+      <div class="twocol" style="margin-top:60px;">
+        <div class="col" style="gap:40px; justify-content:center;">
+          <div class="eyebrow">Автономність</div>
+          <h2 class="title" style="font-size:80px;">Автономність<br/>без компромісів.</h2>
+          <p class="body" style="max-width:32ch;">
+            Кожна вілла працює незалежно від міських мереж.
+          </p>
+        </div>
+        <div class="col" style="gap:0;">
+          <div style="display:grid; grid-template-columns: 1fr; gap:0; border-top:1px solid rgba(31,42,36,0.18); border-left:1px solid rgba(31,42,36,0.18); border-right:1px solid rgba(31,42,36,0.18);">
+            <div style="padding:32px 28px; border-bottom:1px solid rgba(31,42,36,0.18);">
+              <div class="caps" style="color:var(--sand);">Вода</div>
+              <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25;">Власна свердловина&nbsp;·&nbsp;86&nbsp;м<br/>Бучацький водоносний горизонт</div>
+            </div>
+            <div style="padding:32px 28px; border-bottom:1px solid rgba(31,42,36,0.18);">
+              <div class="caps" style="color:var(--sand);">Очистка</div>
+              <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25;">Система Allbau&nbsp;Tech<br/>Замкнутий цикл</div>
+            </div>
+            <div style="padding:32px 28px; border-bottom:1px solid rgba(31,42,36,0.18);">
+              <div class="caps" style="color:var(--sand);">Енергія</div>
+              <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25;">Газ&nbsp;·&nbsp;Сонячні панелі<br/>Резервний генератор</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer mt-auto" style="margin-top:60px;">
+        <span>05&nbsp;·&nbsp;Вілли</span>
+        <span>Lion&nbsp;Hills</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 23 — Optional features -->
+  <section data-label="23 Optional features">
+    <div class="slide">
+      <div class="header">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>05&nbsp;·&nbsp;Вілли</span>
+      </div>
+      <div class="twocol-5-7" style="margin-top:60px;">
+        <div class="col" style="gap:44px; justify-content:center;">
+          <div class="eyebrow">За бажанням</div>
+          <h2 class="title">Додаткові опції.</h2>
+          <p class="body" style="max-width:30ch;">
+            Дім будується під вас. Перелік нижче — не вичерпний, ми обговорюємо кожну ідею персонально.
+          </p>
+          <div class="rule-sand"></div>
+          <ul class="feat" style="font-size:26px;">
+            <li><span>Сонячні панелі</span></li>
+            <li><span>Басейн</span></li>
+            <li><span>Кімната безпеки</span></li>
+          </ul>
+        </div>
+        <div class="col">
+          <img src="assets/villa-cross-section.png" alt="Розріз вілли — додаткові опції" style="width:100%; height:100%; object-fit:contain; object-position:center; display:block;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 24 — Landscape, seasons -->
+  <section data-label="24 Landscape seasons">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/landscape.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,12,10,0.55) 0%, rgba(10,12,10,0.1) 35%, rgba(10,12,10,0) 60%, rgba(10,12,10,0.3) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div class="stack" style="gap:24px;">
+          <div class="eyebrow" style="color:var(--sand-soft);">Авторський ландшафт</div>
+          <h2 class="title" style="font-size:96px; line-height:1; color:var(--cream); max-width:24ch;">Сад радує весь рік.</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 25 — Closing: Ready next year -->
+  <section data-label="25 Closing ready">
+    <div class="slide ink" style="padding:0; position:relative;">
+      <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        <source src="assets/closing-bg.mp4" type="video/mp4" />
+      </video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.55) 0%, rgba(15,18,16,0.25) 40%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between; color:var(--cream);">
+        <div class="header" style="color:rgba(244,239,230,0.85);">
+          <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+          <span>Готовність</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:40px;">
+          <div class="eyebrow" style="color:var(--sand-soft);">Здача комплексу</div>
+          <h1 class="display" style="font-size:160px; line-height:0.9;">2027 —<br/>початок нового<br/>способу життя.</h1>
+          <p class="lead" style="max-width:30ch; color:#D9D4C7;">
+            Кількість вілл — обмежена.
+          </p>
+        </div>
+        <div class="footer" style="color:rgba(244,239,230,0.85);">
+          <span class="wordmark">Lion<span class="dot"></span>Hills</span>
+          <span>Дякуємо</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+<script>
+(async () => {
+  try { await customElements.whenDefined('deck-stage'); } catch (e) {}
+  const ds = document.querySelector('deck-stage');
+  if (ds) {
+    // Weigh only slide children — same filter as deck-stage.length. Skipping
+    // slotted script/style/template keeps inline Babel/CSS from registering
+    // as stable "content" before the framework has mounted anything.
+    const weigh = () => {
+      let text = 0, media = 0;
+      for (const c of ds.children) {
+        const t = c.tagName;
+        if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+        text += (c.textContent || '').trim().length;
+        media += c.querySelectorAll('img,svg,canvas,video').length;
+      }
+      return text + media * 100;
+    };
+    const deadline = Date.now() + 15000;
+    let last = -1, stable = 0;
+    while (Date.now() < deadline) {
+      const n = weigh();
+      if (n > 0 && n === last) { if (++stable >= 2) break; } else { stable = 0; }
+      last = n;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+  }
+  try { await document.fonts.ready; } catch (e) {}
+  setTimeout(() => { try { window.print(); } catch (e) {} }, 200);
+})();
+</script>
+</body>
+</html>
