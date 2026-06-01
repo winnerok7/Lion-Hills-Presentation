@@ -312,6 +312,34 @@
     align-items: center;
     gap: 56px;
   }
+  .lang-toggle {
+    position: absolute;
+    top: 64px;
+    right: 64px;
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 64px;
+    padding: 14px 22px;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--cream);
+    border: 1px solid rgba(244, 239, 230, 0.55);
+    border-radius: 2px;
+    background: rgba(20, 24, 20, 0.18);
+    backdrop-filter: blur(6px);
+    transition: background .3s ease, color .3s ease, border-color .3s ease;
+  }
+  .lang-toggle:hover {
+    background: var(--cream);
+    color: var(--forest);
+    border-color: var(--cream);
+  }
   .cover-slogan {
     font-family: var(--sans) !important;
     font-style: normal !important;
@@ -758,6 +786,7 @@
     <div class="slide cover">
       <img class="bg cover-video" src="assets/cover-poster.jpeg" alt="" />
       <div class="scrim"></div>
+      <a class="lang-toggle" href="Lion Hills EN.html">EN</a>
       <div class="content">
         <div class="stack cover-stack">
           <div class="display cover-title">LION HILLS</div>
