@@ -313,10 +313,10 @@
     gap: 56px;
   }
   .lang-toggle {
-    position: absolute;
-    top: 64px;
-    right: 64px;
-    z-index: 5;
+    position: fixed;
+    top: 32px;
+    right: 32px;
+    z-index: 2147483600;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -331,10 +331,12 @@
     color: var(--cream);
     border: 1px solid rgba(244, 239, 230, 0.55);
     border-radius: 2px;
-    background: rgba(20, 24, 20, 0.18);
+    background: rgba(20, 24, 20, 0.32);
     backdrop-filter: blur(6px);
+    -webkit-tap-highlight-color: transparent;
     transition: background .3s ease, color .3s ease, border-color .3s ease;
   }
+  @media print { .lang-toggle { display: none !important; } }
   .lang-toggle:hover {
     background: var(--cream);
     color: var(--forest);
@@ -786,7 +788,6 @@
     <div class="slide cover">
       <img class="bg cover-video" src="assets/cover-poster.jpeg" alt="" />
       <div class="scrim"></div>
-      <a class="lang-toggle" href="Lion Hills EN.html">EN</a>
       <div class="content">
         <div class="stack cover-stack">
           <div class="display cover-title">LION HILLS</div>
@@ -1660,6 +1661,17 @@
   </section>
 
 </deck-stage>
+
+<a class="lang-toggle" href="Lion Hills EN.html" aria-label="Switch to English">EN</a>
+<script>
+  (function(){
+    var btn = document.querySelector('.lang-toggle');
+    var deck = document.querySelector('deck-stage');
+    function sync(i){ btn.style.display = (i === 0) ? 'inline-flex' : 'none'; }
+    deck.addEventListener('slidechange', function(e){ sync(e.detail.index); });
+    sync(0);
+  })();
+</script>
 
 <script src="deck-stage.js"></script>
 </body>
