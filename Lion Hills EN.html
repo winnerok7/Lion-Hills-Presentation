@@ -1,0 +1,1724 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Lion Hills — Presentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  @font-face {
+    font-family: 'PP Hatton';
+    src: url('fonts/PPHatton-Medium.otf') format('opentype');
+    font-weight: 400 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Styrene A';
+    src: url('fonts/StyreneA-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Styrene A';
+    src: url('fonts/StyreneA-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Styrene A';
+    src: url('fonts/StyreneA-Bold.otf') format('opentype');
+    font-weight: 600 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  :root {
+    --cream: #F4EFE6;
+    --cream-2: #EBE4D6;
+    --forest: #1F2A24;
+    --forest-2: #2A3830;
+    --sand: #B89968;
+    --sand-soft: #C8AE85;
+    --ink: #1A1815;
+    --muted: #6B665C;
+
+    --type-mega: 188px;
+    --type-display: 132px;
+    --type-title: 92px;
+    --type-subtitle: 52px;
+    --type-lead: 40px;
+    --type-body: 32px;
+    --type-small: 26px;
+    --type-caps: 24px;
+
+    --pad-x: 120px;
+    --pad-y: 110px;
+    --gap-title: 56px;
+    --gap-item: 32px;
+
+    --serif: "PP Hatton", "Times New Roman", serif;
+    --sans: "Styrene A", "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+
+  html, body { margin: 0; padding: 0; background: #000; color: var(--ink); font-family: var(--sans); }
+
+  deck-stage { background: #0a0a0a; }
+  deck-stage section {
+    background: var(--cream);
+    color: var(--ink);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ============== Reusable slide patterns ============== */
+  .slide {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: var(--pad-y) var(--pad-x);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .slide.dark { background: var(--forest); color: var(--cream); }
+  .slide.ink { background: var(--ink); color: var(--cream); }
+  .slide.image { padding: 0; }
+
+  /* Page header — appears on most content slides */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--sans);
+    font-size: 24px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .slide.dark .header,
+  .slide.ink .header { color: var(--sand-soft); }
+  .header .brand { letter-spacing: 0.4em; }
+
+  /* Eyebrow (small tag above title) */
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 24px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--sand);
+    font-weight: 500;
+  }
+
+  /* Display / titles */
+  .display {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: var(--type-display);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: var(--type-title);
+    line-height: 1.0;
+    letter-spacing: -0.005em;
+    margin: 0;
+  }
+  .subtitle {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: var(--type-subtitle);
+    line-height: 1.15;
+    margin: 0;
+  }
+  .lead {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: var(--type-lead);
+    line-height: 1.3;
+    margin: 0;
+    color: inherit;
+  }
+  .body {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: var(--type-body);
+    line-height: 1.45;
+    margin: 0;
+    color: inherit;
+    max-width: 28ch;
+  }
+  .small {
+    font-family: var(--sans);
+    font-size: 26px;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+  .slide.dark .small,
+  .slide.ink .small { color: #B7B0A0; }
+
+  .caps {
+    font-family: var(--sans);
+    font-size: 24px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 64px;
+    color: var(--sand);
+    line-height: 1;
+  }
+
+  /* Footer brand strip */
+  .footer {
+    display: none;
+  }
+  .header {
+    display: none;
+  }
+  /* Re-enable on dividers/cover where they sit over imagery and are part of composition? No — user wants them gone everywhere. */
+
+  /* Rule */
+  .rule { height: 1px; background: currentColor; opacity: 0.25; width: 100%; }
+  .rule-sand { height: 1px; background: var(--sand); width: 80px; }
+
+  /* Logo word-mark */
+  .wordmark {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 30px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+  }
+  .wordmark .dot {
+    display: inline-block;
+    width: 6px; height: 6px; background: var(--sand); border-radius: 50%;
+    transform: translateY(-6px);
+    margin: 0 6px;
+  }
+
+  /* ============== Image placeholders ============== */
+  .img {
+    width: 100%;
+    height: 100%;
+    background:
+      repeating-linear-gradient(45deg,
+        rgba(31,42,36,0.07) 0px,
+        rgba(31,42,36,0.07) 2px,
+        rgba(31,42,36,0.03) 2px,
+        rgba(31,42,36,0.03) 24px),
+      linear-gradient(160deg, #D9CFB7 0%, #B7A98A 55%, #8A7E60 100%);
+    color: var(--ink);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+  .img .tag {
+    font-family: var(--mono);
+    font-size: 24px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.85);
+    color: var(--ink);
+    padding: 10px 14px;
+    margin: 18px;
+    border-radius: 2px;
+  }
+  .img.dark {
+    background:
+      repeating-linear-gradient(45deg,
+        rgba(255,255,255,0.04) 0px,
+        rgba(255,255,255,0.04) 2px,
+        transparent 2px,
+        transparent 24px),
+      linear-gradient(160deg, #3B4940 0%, #243029 60%, #161E1A 100%);
+    color: var(--cream);
+  }
+  .img.dark .tag {
+    background: rgba(20,20,18,0.7);
+    color: var(--cream);
+  }
+  .img.sky {
+    background:
+      repeating-linear-gradient(45deg,
+        rgba(255,255,255,0.05) 0px,
+        rgba(255,255,255,0.05) 2px,
+        transparent 2px,
+        transparent 24px),
+      linear-gradient(180deg, #6B8AA4 0%, #8FA6B5 40%, #C8B98F 90%, #B7A276 100%);
+  }
+  .img.forest-mist {
+    background:
+      repeating-linear-gradient(45deg,
+        rgba(255,255,255,0.04) 0px,
+        rgba(255,255,255,0.04) 2px,
+        transparent 2px,
+        transparent 24px),
+      linear-gradient(160deg, #4F6356 0%, #2F4038 50%, #1A2520 100%);
+    color: var(--cream);
+  }
+  .img.forest-mist .tag { background: rgba(20,20,18,0.7); color: var(--cream); }
+
+  /* ============== Specific slide layouts ============== */
+  .cover {
+    padding: 0;
+    color: var(--cream);
+  }
+  .cover .bg {
+    position: absolute; inset: 0;
+  }
+  .cover-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .cover-title {
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .cover .scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,12,10,0.55) 0%, rgba(10,12,10,0.15) 35%, rgba(10,12,10,0.15) 60%, rgba(10,12,10,0.7) 100%);
+  }
+  .cover .content {
+    position: relative;
+    z-index: 2;
+    width: 100%; height: 100%;
+    box-sizing: border-box;
+    padding: var(--pad-y) var(--pad-x);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .cover-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 56px;
+  }
+  .lang-toggle {
+    position: fixed;
+    top: 32px;
+    right: 32px;
+    z-index: 2147483600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 64px;
+    padding: 14px 22px;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--cream);
+    border: 1px solid rgba(244, 239, 230, 0.55);
+    border-radius: 2px;
+    background: rgba(20, 24, 20, 0.32);
+    backdrop-filter: blur(6px);
+    -webkit-tap-highlight-color: transparent;
+    transition: background .3s ease, color .3s ease, border-color .3s ease;
+  }
+  @media print { .lang-toggle { display: none !important; } }
+  .lang-toggle:hover {
+    background: var(--cream);
+    color: var(--forest);
+    border-color: var(--cream);
+  }
+  .cover-slogan {
+    font-family: var(--sans) !important;
+    font-style: normal !important;
+    text-transform: uppercase;
+    letter-spacing: 0.42em;
+    font-weight: 500;
+    font-size: 28px;
+    opacity: 0.95;
+  }
+  .cover .display {
+    font-size: 240px;
+    letter-spacing: -0.02em;
+    font-weight: 300;
+    line-height: 0.9;
+  }
+  .cover .tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 44px;
+    font-weight: 300;
+    opacity: 0.92;
+  }
+
+  /* Two-column */
+  .twocol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    flex: 1;
+    align-items: stretch;
+  }
+  .twocol-7-5 {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 80px;
+    flex: 1;
+    align-items: stretch;
+  }
+  .twocol-5-7 {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 80px;
+    flex: 1;
+    align-items: stretch;
+  }
+
+  .col { display: flex; flex-direction: column; }
+  .col.center { justify-content: center; }
+  .col.between { justify-content: space-between; }
+  .col.end { justify-content: flex-end; }
+
+  /* Pillar list (5 pillars) */
+  .pillars { display: flex; flex-direction: column; gap: 20px; }
+  .pillar {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 24px;
+    align-items: baseline;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(31,42,36,0.18);
+  }
+  .pillar:last-child { border-bottom: none; }
+  .pillar .n {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 60px;
+    color: var(--sand);
+    line-height: 1;
+  }
+  .pillar .name {
+    font-family: var(--serif);
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.05;
+  }
+  .mini-list { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .mini-list li { font-family: var(--sans); font-size: 24px; line-height: 1.4; padding-left: 20px; position: relative; }
+  .mini-list li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.55; }
+  .pillar .desc {
+    font-family: var(--sans);
+    font-size: 24px;
+    color: var(--muted);
+    margin-top: 8px;
+    max-width: 36ch;
+  }
+
+  /* Section divider */
+  .section-divider {
+    position: relative;
+    padding: 0;
+    color: var(--cream);
+  }
+  .section-divider .bg { position: absolute; inset: 0; }
+  .section-divider .scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,12,10,0.5) 0%, rgba(10,12,10,0.25) 50%, rgba(10,12,10,0.65) 100%);
+  }
+  .section-divider .content {
+    position: relative; z-index: 2;
+    width: 100%; height: 100%;
+    box-sizing: border-box;
+    padding: var(--pad-y) var(--pad-x);
+    display: flex; flex-direction: column; justify-content: flex-start; gap: 32px;
+  }
+  .section-divider .content > div:empty { display: none; }
+  .section-divider .num-big {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 240px;
+    line-height: 0.9;
+    color: var(--sand-soft);
+    opacity: 0.95;
+  }
+  .section-divider .sect-title {
+    font-family: var(--serif);
+    font-size: 156px;
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+  }
+  .section-divider .sect-sub {
+    font-family: var(--sans);
+    font-size: 22px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sand-soft);
+    font-weight: 500;
+  }
+
+  /* Pull quote */
+  .pullquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 88px;
+    line-height: 1.1;
+    letter-spacing: -0.005em;
+    max-width: 22ch;
+    text-wrap: pretty;
+  }
+  .pullquote .open { color: var(--sand); display: inline-block; transform: translateY(8px); margin-right: 6px; }
+  .attribution {
+    font-family: var(--sans);
+    font-size: 26px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .slide.dark .attribution,
+  .slide.ink .attribution { color: var(--sand-soft); }
+
+  /* Bullet list with subtle markers */
+  .feat {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .feat li {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 24px;
+    align-items: baseline;
+    font-family: var(--sans);
+    font-size: 30px;
+    line-height: 1.35;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(31,42,36,0.14);
+  }
+  .feat li:last-child { border-bottom: none; }
+  .feat li::before {
+    content: "";
+    display: block;
+    width: 10px; height: 10px;
+    background: var(--sand);
+    border-radius: 50%;
+    align-self: center;
+  }
+  .slide.dark .feat li,
+  .slide.ink .feat li {
+    border-bottom-color: rgba(255,255,255,0.12);
+  }
+
+  /* Big stat */
+  .stat-num {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 360px;
+    line-height: 0.85;
+    letter-spacing: -0.03em;
+  }
+  .stat-unit {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 64px;
+    color: var(--sand);
+  }
+
+  /* Stat row (three) */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; }
+  .stat .v {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 152px;
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+  }
+  .stat .v .u { font-size: 56px; color: var(--sand); font-style: italic; font-weight: 300; margin-left: 8px; }
+  .stat .l {
+    font-family: var(--sans);
+    font-size: 24px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-top: 18px;
+  }
+  .slide.dark .stat .l,
+  .slide.ink .stat .l { color: var(--sand-soft); }
+
+
+  /* Amenity full-bleed slides — desc bottom right */
+  .amenity-desc {
+    position: absolute;
+    right: var(--pad-x);
+    bottom: var(--pad-y);
+    z-index: 3;
+    font-family: var(--sans);
+    font-size: 22px;
+    line-height: 1.45;
+    color: rgba(244,239,230,0.92);
+    max-width: 34ch;
+    text-align: right;
+  }
+
+  /* Autonomy stats (slide 26) — Styrene sans */
+  .autonomy-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 0 60px;
+    align-items: start;
+  }
+  .autonomy-stats .stat {
+    display: contents;
+  }
+  .autonomy-stats .stat .v {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 96px;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    grid-row: 1;
+    align-self: end;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .autonomy-stats .stat .v .u {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 56px;
+    color: var(--sand);
+    font-style: normal;
+  }
+  .autonomy-stats .stat .l {
+    grid-row: 2;
+    margin-top: 24px;
+    align-self: start;
+  }
+  .autonomy-stats .stat .small {
+    grid-row: 3;
+    margin-top: 14px;
+    align-self: start;
+  }
+  /* Column placement */
+  .autonomy-stats .stat:nth-child(1) > * { grid-column: 1; }
+  .autonomy-stats .stat:nth-child(2) > * { grid-column: 2; }
+  .autonomy-stats .stat:nth-child(3) > * { grid-column: 3; }
+
+  /* Placeholder cards (slide 23, awaiting real photos) */
+  .placeholder-card {
+    background: linear-gradient(160deg, #D9CFB7 0%, #B7A98A 55%, #8A7E60 100%);
+    position: relative;
+  }
+  .placeholder-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(45deg,
+      rgba(31,42,36,0.07) 0px,
+      rgba(31,42,36,0.07) 2px,
+      transparent 2px,
+      transparent 24px);
+    pointer-events: none;
+  }
+  .placeholder-tag {
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    z-index: 2;
+    font-family: var(--mono);
+    font-size: 16px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.85);
+    color: var(--ink);
+    padding: 8px 12px;
+    border-radius: 2px;
+  }
+
+  /* Infrastructure grid (slide 14) */
+  .infra-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+    flex: 1;
+    min-height: 0;
+  }
+  .infra-card {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    color: var(--cream);
+  }
+  .infra-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20,22,20,0) 45%, rgba(20,22,20,0.78) 100%);
+    pointer-events: none;
+  }
+  .infra-label {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 22px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .infra-n {
+    font-family: var(--mono);
+    font-size: 18px;
+    letter-spacing: 0.3em;
+    color: var(--sand-soft);
+    margin-bottom: 4px;
+  }
+  .infra-name {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 1.1;
+    color: var(--cream);
+  }
+  .infra-note {
+    font-family: var(--sans);
+    font-size: 18px;
+    color: rgba(244,239,230,0.82);
+    line-height: 1.35;
+    margin-top: 4px;
+    max-width: 28ch;
+  }
+
+  /* Materials grid */
+  .materials { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 64px; }
+  .material {
+    border-top: 1px solid rgba(31,42,36,0.2);
+    padding-top: 18px;
+  }
+  .slide.dark .material { border-top-color: rgba(255,255,255,0.18); }
+  .material .name {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 1.1;
+  }
+  .material .desc {
+    font-family: var(--sans);
+    font-size: 24px;
+    color: var(--muted);
+    margin-top: 8px;
+    letter-spacing: 0.04em;
+  }
+  .slide.dark .material .desc,
+  .slide.ink .material .desc { color: #B7B0A0; }
+
+  /* Seasons (4-col) */
+  .seasons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; flex: 1; align-items: stretch; }
+  .season { display: flex; flex-direction: column; }
+  .season .photo { flex: 1; min-height: 0; }
+  .season .label {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 44px;
+    margin-top: 28px;
+  }
+  .season .note {
+    font-family: var(--sans);
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  /* Helpers */
+  .stack { display: flex; flex-direction: column; }
+  .gap-title > * + * { margin-top: var(--gap-title); }
+  .gap-item > * + * { margin-top: var(--gap-item); }
+  .flex1 { flex: 1; }
+  .mt-auto { margin-top: auto; }
+  .mb-auto { margin-bottom: auto; }
+
+  /* Side rail with section number */
+  .siderail {
+    position: absolute;
+    left: 48px;
+    top: 0; bottom: 0;
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+  }
+  .siderail .vline { writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--sans); font-size: 18px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .slide.dark .siderail .vline,
+  .slide.ink .siderail .vline { color: var(--sand-soft); }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080" no-rail>
+
+  <!-- 01 — COVER -->
+  <section data-label="01 Cover">
+    <div class="slide cover">
+      <img class="bg cover-video" src="assets/cover-poster.jpeg" alt="" />
+      <div class="scrim"></div>
+      <div class="content">
+        <div class="stack cover-stack">
+          <div class="display cover-title">LION HILLS</div>
+          <div class="tagline cover-slogan">Living on the Heights</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="05 Concept 5 pillars">
+    <div class="slide">
+      <div class="header">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>The Concept</span>
+      </div>
+      <div class="twocol" style="margin-top:60px; gap:120px;">
+        <div class="col" style="gap:40px; justify-content:flex-start;">
+          <div class="eyebrow">The Concept</div>
+          <h1 class="display" style="font-size:132px;">Key<br/>advantages.</h1>
+        </div>
+        <div class="col">
+          <ol class="pillars">
+            <li class="pillar">
+              <div class="n">01</div>
+              <div>
+                <div class="name">Location</div>
+                <div class="desc">Scenic hills by the Holosiivskyi reserve, 15 minutes to Pechersk with no traffic lights.</div>
+              </div>
+            </li>
+            <li class="pillar">
+              <div class="n">02</div>
+              <div>
+                <div class="name">Infrastructure</div>
+                <div class="desc">Spa, gym, infinity pool, Belkin restaurant, Kids Club.</div>
+              </div>
+            </li>
+            <li class="pillar">
+              <div class="n">03</div>
+              <div>
+                <div class="name">Architecture</div>
+                <ul class="mini-list">
+                  <li>Privacy for every villa through the terraced composition</li>
+                  <li>Considered site security</li>
+                  <li>Villa specifications — from autonomous engineering systems to finished interiors</li>
+                </ul>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="08 Section 2 Location">
+    <div class="slide section-divider">
+      <video class="bg" autoplay loop muted playsinline preload="auto" style="width:100%; height:100%; object-fit:cover;">
+        <source src="assets/cover.mp4" type="video/mp4" />
+      </video>
+      <div class="scrim"></div>
+      <div class="content">
+        <div></div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:80px;">
+          <div class="stack" style="gap:32px;">
+                        <div class="sect-title">Location.</div>
+          </div>
+          <div class="sect-sub" style="text-align:right; line-height:1.5; white-space:nowrap;">Lisnyky&nbsp;·&nbsp;City edge</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="10 Stat 15 min">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/kyiv-skyline.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.55) 0%, rgba(15,18,16,0.2) 40%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between;">
+        <div></div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:80px;">
+          <div class="col" style="gap:60px; max-width:24ch;">
+            <div class="eyebrow" style="color:var(--sand-soft); white-space:nowrap;">From Pechersk</div>
+            <div style="display:flex; flex-direction:column; gap:0; line-height:1; color:var(--cream);">
+              <span class="stat-num" style="font-size:340px;">15</span>
+              <span class="stat-unit" style="margin-top:8px; padding-left:8px;">minutes</span>
+            </div>
+          </div>
+          <p class="body" style="max-width:22ch; color:#E8E2D3; text-align:right; font-size:32px; line-height:1.35;">
+            No traffic lights.<br/>One road.<br/>A predictable route.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="09 Lisnyky edge">
+    <div class="slide dark" style="position:relative;">
+      <div class="header" style="position:relative; z-index:2;">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>02&nbsp;·&nbsp;Location</span>
+      </div>
+      <div style="position:relative; z-index:2; max-width:44%; height:100%; display:flex; flex-direction:column; justify-content:center; gap:48px;">
+        <div class="eyebrow">Lisnyky</div>
+        <h2 class="title">Right on<br/>the city’s edge.</h2>
+        <p class="body" style="max-width:30ch; color:#D9D4C7;">
+          Behind us the nature reserve begins. Ahead of us — the city.
+        </p>
+      </div>
+      <img src="assets/location-map-v3.png" alt="Lion Hills map" style="position:absolute; top:0; right:0; width:52%; height:100%; object-fit:fill; z-index:1;" />
+    </div>
+  </section>
+
+<section data-label="04 Quote builds for self">
+    <div class="slide dark" style="justify-content:space-between;">
+      <div class="header">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>I&nbsp;·&nbsp;Story</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:60px; max-width:1500px;">
+        <p class="pullquote"><span class="open">“</span>I built this place for my own family. That’s why there are no compromises here.”</p>
+        <div style="display:flex; align-items:center; gap:24px;">
+          <span class="rule-sand"></span>
+          <span class="attribution">Lev Partskhaladze&nbsp;·&nbsp;Managing Partner</span>
+        </div>
+      </div>
+      <div class="footer">
+        <span>02&nbsp;·&nbsp;Quote</span>
+        <span>Lion&nbsp;Hills</span>
+      </div>
+    </div>
+  </section>
+
+<section data-label="13 Section 4 Infrastructure">
+    <div class="slide section-divider">
+      <video class="bg" autoplay loop muted playsinline preload="auto" style="width:100%; height:100%; object-fit:cover;">
+        <source src="assets/infrastructure.mp4" type="video/mp4" />
+      </video>
+      <div class="scrim"></div>
+      <div class="content">
+        <div></div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:80px;">
+          <div class="stack" style="gap:32px;">
+            <div class="sect-title" style="white-space:nowrap;">Infrastructure.</div>
+          </div>
+          <div class="sect-sub" style="max-width:20ch; text-align:right; line-height:1.5;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="14 Walking distance">
+    <div class="slide">
+      <div class="header">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>04&nbsp;·&nbsp;Infrastructure</span>
+      </div>
+      <div class="twocol" style="margin-top:60px;">
+        <div class="col" style="gap:40px; justify-content:center;">
+          <div class="eyebrow">Within walking distance</div>
+          <h2 class="title" style="font-size:80px;">Everything that matters —<br/>just minutes<br/>from home.</h2>
+        </div>
+        <div class="col" style="gap:0;">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0; border-top:1px solid rgba(31,42,36,0.18); border-left:1px solid rgba(31,42,36,0.18);">
+            <div style="padding:32px 28px; border-right:1px solid rgba(31,42,36,0.18); border-bottom:1px solid rgba(31,42,36,0.18);">
+              <div class="caps" style="color:var(--sand);">Shopping</div>
+              <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25;">Silpo<br/>MANUFAKTURA</div>
+            </div>
+            <div style="padding:32px 28px; border-right:1px solid rgba(31,42,36,0.18); border-bottom:1px solid rgba(31,42,36,0.18);">
+              <div class="caps" style="color:var(--sand);">Healthcare</div>
+              <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25;">Synevo<br/>24/7 clinic</div>
+            </div>
+            <div style="padding:32px 28px; border-right:1px solid rgba(31,42,36,0.18); border-bottom:1px solid rgba(31,42,36,0.18);">
+              <div class="caps" style="color:var(--sand);">Education</div>
+              <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25;">American school<br/>Private kindergartens</div>
+            </div>
+            <div style="padding:32px 28px; border-right:1px solid rgba(31,42,36,0.18); border-bottom:1px solid rgba(31,42,36,0.18);">
+              <div class="caps" style="color:var(--sand);">Sport</div>
+              <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25;">Olympic Village<br/>Equides Club</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer mt-auto" style="margin-top:60px;">
+        <span>04&nbsp;·&nbsp;Infrastructure</span>
+        <span>Lion&nbsp;Hills</span>
+      </div>
+    </div>
+  </section>
+
+<section data-label="15 Equides">
+    <div class="slide" style="padding:80px var(--pad-x);">
+      <div class="header">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>04&nbsp;·&nbsp;Infrastructure</span>
+      </div>
+      <div class="stack" style="gap:20px; margin-top:32px;">
+        <div class="eyebrow">Outside the complex</div>
+        <h2 class="title" style="font-size:64px; max-width:28ch;">Step out the gate —<br/>and you’re already there.</h2>
+      </div>
+      <div class="infra-grid">
+        <div class="infra-card" style="background-image:url('assets/equides-golf.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">18-hole golf course</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/silpo.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Silpo</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/equides-restaurant.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Belkin restaurant</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/school.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">American school</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/feofania.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Feofaniya Park</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/equides-hotel.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">5★ hotel</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer mt-auto" style="margin-top:40px;">
+        <span>"Golf or padel changes how you think about active leisure"</span>
+        <span>Lion&nbsp;Hills</span>
+      </div>
+    </div>
+  </section>
+
+<section data-label="15b Equides continued">
+    <div class="slide" style="padding:80px var(--pad-x);">
+      <div class="header">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>04&nbsp;·&nbsp;Infrastructure</span>
+      </div>
+      <div class="stack" style="gap:20px; margin-top:32px;">
+        <div class="eyebrow">Outside the complex</div>
+        <h2 class="title" style="font-size:64px; max-width:28ch;">And there’s<br/>more.</h2>
+      </div>
+      <div class="infra-grid">
+        <div class="infra-card" style="background-image:url('assets/equides-horse.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Equestrian club</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/sinevo.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Synevo</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/equides-padel.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">9 padel courts</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/manufaktura.jpeg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Manufaktura mall</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/holosiivskyi-park.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Holosiivskyi park</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/olympic-village.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Olympic village</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer mt-auto" style="margin-top:40px;">
+        <span>Everything close by. Nothing excessive.</span>
+        <span>Lion&nbsp;Hills</span>
+      </div>
+    </div>
+  </section>
+
+<section data-label="16 Internal infrastructure">
+    <div class="slide" style="padding:80px var(--pad-x);">
+      <div class="stack" style="gap:20px;">
+        <div class="eyebrow">Within the complex</div>
+        <h2 class="title" style="font-size:64px; max-width:28ch;">Part of the setting<br/>people move here for.</h2>
+      </div>
+      <div class="infra-grid">
+        <div class="infra-card" style="background-image:url('assets/infra-spa.png');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Spa</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/infra-gym.png');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Gym</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/infra-pool.png');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Infinity pool</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/infra-restaurant.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Belkin restaurant</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/infra-yoga.png');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Yoga room</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/infra-kids.png');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Kids Club</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="16a Spa fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/infra-spa.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Infrastructure</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Spa.</h2></div>
+        <p class="amenity-desc">A sauna concept with a panoramic window onto the forest. Friday evening, silence, and nowhere you need to be.</p>
+      </div>
+    </div>
+  </section>
+
+<section data-label="16b Gym fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/infra-gym.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Infrastructure</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Gym.</h2></div>
+        <p class="amenity-desc">A fitness hall with a panoramic window onto the hills and the morning mist.</p>
+      </div>
+    </div>
+  </section>
+
+<section data-label="16e Yoga fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/infra-yoga.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Infrastructure</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Yoga room.</h2></div>
+        <p class="amenity-desc">A quiet space above the forest, where the morning begins with practice.</p>
+      </div>
+    </div>
+  </section>
+
+<section data-label="16c Pool fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/infra-pool.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Infrastructure</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Infinity pool.</h2></div>
+        <p class="amenity-desc">A pool overlooking the Holosiivskyi reserve at dawn.</p>
+      </div>
+    </div>
+  </section>
+
+<section data-label="16f Kids fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/infra-kids.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Infrastructure</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Kids Club.</h2></div>
+        <p class="amenity-desc">A supervised space with an activity host. Children live a life of their own — close by and safe.</p>
+      </div>
+    </div>
+  </section>
+
+<section data-label="16d Restaurant fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/infra-restaurant.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">IInfrastructure</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Belkin restaurant.</h2></div>
+        <p class="amenity-desc">A restaurant with a panoramic deck. A neighbour already well known in Kyiv.</p>
+      </div>
+    </div>
+  </section>
+
+<section data-label="11 Section 3 Architecture">
+    <div class="slide section-divider">
+      <video class="bg" autoplay loop muted playsinline preload="auto" style="width:100%; height:100%; object-fit:cover;">
+        <source src="assets/location-bg.mp4" type="video/mp4" />
+      </video>
+      <div class="scrim"></div>
+      <div class="content" style="justify-content:flex-start; padding-top:140px;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:80px;">
+          <div class="stack" style="gap:32px;">
+                        <div class="sect-title">Architecture.</div>
+          </div>
+          <div class="sect-sub" style="max-width:24ch; text-align:right; line-height:1.5; padding-bottom:24px; padding-right:120px;">Terraced architecture&nbsp;·&nbsp;Privacy</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="12 Cascade architecture">
+    <div class="slide">
+      <div class="header">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>Architecture</span>
+      </div>
+      <div class="twocol-5-7" style="margin-top:60px;">
+        <div class="col" style="gap:44px; justify-content:center;">
+          <div class="eyebrow">Architecture</div>
+          <h2 class="title">Terraced architecture.</h2>
+          <p class="body" style="max-width:30ch;">
+            Every villa enjoys beautiful views while keeping its own sense of privacy.
+          </p>
+          <div class="rule-sand"></div>
+          <p class="body" style="max-width:30ch;">
+            This is exactly what makes our project unique.
+          </p>
+        </div>
+        <div class="col">
+          <video autoplay loop muted playsinline preload="auto" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <source src="assets/architecture.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="06 Section 1 Nature">
+    <div class="slide section-divider">
+      <img class="bg" src="assets/nature-divider.jpeg" alt="" style="width:100%; height:100%; object-fit:cover;" />
+      <div class="scrim"></div>
+      <div class="content">
+        <div class="header" style="color:rgba(244,239,230,0.8);">
+          <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+          <span>Section&nbsp;·&nbsp;01 / 05</span>
+        </div>
+        <div></div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:80px;">
+          <div class="stack" style="gap:32px;">
+                        <div class="sect-title">Nature<br/>&amp; views.</div>
+          </div>
+          <div class="sect-sub" style="max-width:32ch; text-align:right; line-height:1.5;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="06b Nature video description">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        <source src="assets/nature1.mp4" type="video/mp4" />
+      </video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.15) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0.35) 65%, rgba(15,18,16,0.88) 100%), linear-gradient(90deg, rgba(0,0,0,0.54) 0%, rgba(0,0,0,0) 58%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-end;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:56ch;">
+          <p class="body" style="color:var(--cream); margin:0;">The location of Lion Hills was not chosen at random. We were looking for a place that could combine fast access to central Kyiv with a genuine sense of seclusion in nature.</p>
+          <p class="body" style="color:var(--cream); margin:0;">That is why we chose Lisnyky.</p>
+          <p class="body" style="color:var(--cream); margin:0;">Just 15 minutes to Pechersk, along a direct route with no traffic lights. And at the same time, right beyond the Lion Hills grounds, the Holosiivskyi nature reserve begins, creating an atmosphere of quiet, privacy and harmony with nature.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="06c Parks video">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        <source src="assets/parks-drone.mp4" type="video/mp4" />
+      </video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0) 0%, rgba(15,18,16,0.15) 55%, rgba(15,18,16,0.65) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x) 48px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-end;">
+        <div style="display:flex; gap:16px;">
+          <div style="position:relative; flex:1; height:182px; border-radius:2px; overflow:hidden; background-image:url('assets/park-holosiivskyi2.webp'); background-size:cover; background-position:center;">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);"></div>
+            <div style="position:absolute; left:14px; right:14px; bottom:12px; font-family:var(--sans); font-weight:500; font-size:20px; line-height:1.25; color:var(--cream);">Holosiivskyi Park</div>
+          </div>
+          <div style="position:relative; flex:1; height:182px; border-radius:2px; overflow:hidden; background-image:url('assets/park-feofaniya2.jpg'); background-size:cover; background-position:center;">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);"></div>
+            <div style="position:absolute; left:14px; right:14px; bottom:12px; font-family:var(--sans); font-weight:500; font-size:20px; line-height:1.25; color:var(--cream);">Feofaniya Park</div>
+          </div>
+          <div style="position:relative; flex:1; height:182px; border-radius:2px; overflow:hidden; background-image:url('assets/park-kruhlyk.webp'); background-size:cover; background-position:center;">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);"></div>
+            <div style="position:absolute; left:14px; right:14px; bottom:12px; font-family:var(--sans); font-weight:500; font-size:20px; line-height:1.25; color:var(--cream);">Kruhlyk Lake</div>
+          </div>
+          <div style="position:relative; flex:1; height:182px; border-radius:2px; overflow:hidden; background-image:url('assets/park-bezodnya.jpg'); background-size:cover; background-position:center;">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);"></div>
+            <div style="position:absolute; left:14px; right:14px; bottom:12px; font-family:var(--sans); font-weight:500; font-size:20px; line-height:1.25; color:var(--cream);">Bezodnya Nature Reserve</div>
+          </div>
+          <div style="position:relative; flex:1; height:182px; border-radius:2px; overflow:hidden; background-image:url('assets/park-khodosivka.jpg'); background-size:cover; background-position:center;">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);"></div>
+            <div style="position:absolute; left:14px; right:14px; bottom:12px; font-family:var(--sans); font-weight:500; font-size:20px; line-height:1.25; color:var(--cream);">Khodosivka Lake</div>
+          </div>
+          <div style="position:relative; flex:1; height:182px; border-radius:2px; overflow:hidden; background-image:url('assets/park-lisnyky-trail.jpg'); background-size:cover; background-position:center;">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);"></div>
+            <div style="position:absolute; left:14px; right:14px; bottom:12px; font-family:var(--sans); font-weight:500; font-size:20px; line-height:1.25; color:var(--cream);">Lisnyky Eco Trail</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="07 Nature content">
+    <div class="slide section-divider" style="color:var(--cream);">
+      <video class="bg" autoplay loop muted playsinline preload="auto" style="width:100%; height:100%; object-fit:cover;">
+        <source src="assets/nature-content.mp4" type="video/mp4" />
+      </video>
+      <div class="scrim" style="background:linear-gradient(90deg, rgba(10,14,12,0.78) 0%, rgba(10,14,12,0.5) 45%, rgba(10,14,12,0.1) 80%, rgba(10,14,12,0.3) 100%);"></div>
+      <div class="content" style="justify-content:flex-start; align-items:flex-start; padding-top:120px;">
+        <div class="stack" style="gap:40px; max-width:680px;">
+          <div class="eyebrow" style="color:var(--sand-soft);">Nature</div>
+          <h2 class="title" style="font-size:88px; line-height:1;">The villas stand<br/>on scenic hilltops.</h2>
+          <p class="body" style="max-width:34ch; color:#E5E0D2;">
+            Bespoke landscape design runs across the whole estate, with an abundance of trees and flowering plants.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="18 Section 5 Villas">
+    <div class="slide section-divider">
+      <img class="bg" src="assets/villas-hero.jpg" alt="" style="width:100%; height:100%; object-fit:cover;" />
+      <div class="scrim"></div>
+      <div class="content" style="justify-content:flex-end; padding-bottom:24px;">
+        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+          <h2 class="sect-title" style="color:#FFFFFF; text-align:right; line-height:0.95; margin:0;">Imagine<br/>the perfect villa</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="21b Villas divider video">
+    <div class="slide section-divider">
+      <video class="bg" autoplay loop muted playsinline preload="auto" style="width:100%; height:100%; object-fit:cover;">
+        <source src="assets/villas-bird.mp4" type="video/mp4" />
+      </video>
+      <div class="scrim"></div>
+      <div class="content" style="justify-content:flex-start; padding-top:140px;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:80px;">
+          <div class="stack" style="gap:32px;">
+                        <div class="sect-title">Villas.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="22b Villas video only">
+    <div class="slide" style="padding:0; cursor:pointer;">
+      <video id="villas-video" autoplay loop muted playsinline preload="auto" style="width:100%; height:100%; object-fit:cover; display:block;">
+        <source src="assets/villas-horizontal.mp4" type="video/mp4" />
+      </video>
+      <div id="unmute-hint" style="position:absolute; right:32px; bottom:32px; padding:14px 22px; background:rgba(20,22,20,0.6); color:var(--cream); font-family:var(--sans); font-size:18px; letter-spacing:0.2em; text-transform:uppercase; border-radius:2px; pointer-events:none; backdrop-filter:blur(6px); transition:opacity .4s;">🔊 Tap for sound</div>
+    </div>
+    <script>
+      (function(){
+        var slide = document.currentScript.parentElement;
+        var video = slide.querySelector('video');
+        var hint = slide.querySelector('#unmute-hint');
+        slide.addEventListener('click', function(){
+          if (video) {
+            video.muted = false;
+            video.play().catch(function(){});
+            if (hint) hint.style.opacity = '0';
+          }
+        });
+      })();
+    </script>
+  </section>
+
+<section data-label="23 Villa anatomy grid">
+    <div class="slide" style="padding:80px var(--pad-x);">
+      <div class="stack" style="gap:20px;">
+        <div class="eyebrow">Anatomy of a villa</div>
+      </div>
+      <div class="infra-grid" style="grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr);">
+        <div class="infra-card" style="overflow:hidden;">
+          <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+            <source src="assets/terrace.mp4" type="video/mp4" />
+          </video>
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Terrace, nine months a year</div>
+          </div>
+        </div>
+        <div class="infra-card" style="overflow:hidden;">
+          <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+            <source src="assets/privacy.mp4" type="video/mp4" />
+          </video>
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Privacy</div>
+          </div>
+        </div>
+        <div class="infra-card" style="overflow:hidden;">
+          <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+            <source src="assets/windows.mp4" type="video/mp4" />
+          </video>
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Full-height windows</div>
+          </div>
+        </div>
+        <div class="infra-card" style="overflow:hidden;">
+          <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+            <source src="assets/parking.mp4" type="video/mp4" />
+          </video>
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Private parking</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="24a Terrace fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        <source src="assets/terrace.mp4" type="video/mp4" />
+      </video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Anatomy of a villa</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Terrace.</h2></div>
+        <p class="amenity-desc">An enclosed terrace nine months a year. The place where you spend most of your time with family and friends.</p>
+      </div>
+    </div>
+  </section>
+
+<section data-label="24b Privacy fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        <source src="assets/privacy.mp4" type="video/mp4" />
+      </video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Anatomy of a villa</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Privacy.</h2></div>
+        <p class="amenity-desc">Considered planting and architecture shape a private living space. Privacy is built into the very concept of the residence.</p>
+      </div>
+    </div>
+  </section>
+
+<section data-label="24c Windows fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        <source src="assets/windows.mp4" type="video/mp4" />
+      </video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Anatomy of a villa</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Windows.</h2></div>
+        <p class="amenity-desc">Aluminium glazing with a sliding system.</p>
+      </div>
+    </div>
+  </section>
+
+<section data-label="24d Parking fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        <source src="assets/parking.mp4" type="video/mp4" />
+      </video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Anatomy of a villa</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Parking.</h2></div>
+        <p class="amenity-desc">An enclosed two-car garage plus extra space for guests.</p>
+      </div>
+    </div>
+  </section>
+
+<section data-label="38a Villa features">
+    <div class="slide" style="padding:0; position:relative; background:#FFFFFF;">
+      <img src="assets/villa-features-spread.png" alt="Villa features" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center;" />
+    </div>
+  </section>
+
+<section data-label="24e Safe room fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream); background:#111710;">
+      <img src="assets/safe-room.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,11,8,0.30) 0%, rgba(8,11,8,0.20) 40%, rgba(8,11,8,0.70) 100%), linear-gradient(270deg, rgba(8,11,8,0.20) 0%, rgba(8,11,8,0) 25%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; align-items:stretch; justify-content:space-between;">
+        <div style="display:flex; flex-direction:column; justify-content:space-between; max-width:40ch; flex-shrink:0;">
+          <h2 class="title" style="font-size:56px; line-height:1.15; color:var(--cream); margin:0; white-space:nowrap;">100% autonomous systems<br/>&amp; a Safe Room</h2>
+          <p class="body" style="max-width:30ch; color:#D9D4C7; margin:0;">Each villa runs independently of the city&rsquo;s utility networks.</p>
+        </div>
+        <div style="align-self:flex-end; width:520px; text-align:right; display:grid; grid-template-columns:1fr; gap:0; border-top:1px solid rgba(244,239,230,0.22); border-left:1px solid rgba(244,239,230,0.22); border-right:1px solid rgba(244,239,230,0.22);">
+          <div style="padding:32px 28px; border-bottom:1px solid rgba(244,239,230,0.22);">
+            <div class="caps" style="color:var(--sand-soft);">Water</div>
+            <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25; color:var(--cream);">Private well&nbsp;·&nbsp;86&nbsp;m<br/>Buchak aquifer</div>
+          </div>
+          <div style="padding:32px 28px; border-bottom:1px solid rgba(244,239,230,0.22);">
+            <div class="caps" style="color:var(--sand-soft);">Treatment</div>
+            <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25; color:var(--cream);">Allbau&nbsp;Tech system<br/>Closed-loop cycle</div>
+          </div>
+          <div style="padding:32px 28px; border-bottom:1px solid rgba(244,239,230,0.22);">
+            <div class="caps" style="color:var(--sand-soft);">Energy</div>
+            <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25; color:var(--cream);">Gas&nbsp;·&nbsp;Solar panels<br/>Backup generator</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="23 Optional features">
+    <div class="slide">
+      <div class="header">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>05&nbsp;·&nbsp;Villas</span>
+      </div>
+      <div class="twocol-5-7" style="margin-top:60px;">
+        <div class="col" style="gap:44px; justify-content:center;">
+          <div class="eyebrow">Optional</div>
+          <h2 class="title">Optional features.</h2>
+          <p class="body" style="max-width:30ch;">
+            The home is built around you. The list below isn’t exhaustive — we discuss every idea individually.
+          </p>
+          <div class="rule-sand"></div>
+        </div>
+        <div class="col" style="display:flex; align-items:center; justify-content:center;">
+          <ul class="feat" style="font-size:32px; width:100%; max-width:520px; list-style:none; margin:0; padding:0;">
+            <li><span>Solar panels</span></li>
+            <li><span>Swimming pool</span></li>
+            <li><span>Safe room</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="29 Choose your villa">
+    <div class="slide" style="padding:80px var(--pad-x);">
+      <div class="stack" style="gap:20px;">
+        <div class="eyebrow">Choose your villa</div>
+      </div>
+      <div class="infra-grid" style="grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr);">
+        <div class="infra-card" style="overflow:hidden;">
+          <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+            <source src="assets/villa-1.mp4" type="video/mp4" />
+          </video>
+          <div class="infra-overlay"></div>
+          <div class="infra-label" style="flex-direction:row; align-items:flex-end; justify-content:space-between; gap:24px;">
+            <div class="infra-name">Villa · Type 1</div>
+            <div style="font-family:var(--serif); font-style:italic; font-weight:300; font-size:64px; line-height:1; color:var(--sand-soft);">250&nbsp;m²</div>
+          </div>
+        </div>
+        <div class="infra-card" style="overflow:hidden;">
+          <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+            <source src="assets/villa-2.mp4" type="video/mp4" />
+          </video>
+          <div class="infra-overlay"></div>
+          <div class="infra-label" style="flex-direction:row; align-items:flex-end; justify-content:space-between; gap:24px;">
+            <div class="infra-name">Villa · Type 2</div>
+            <div style="font-family:var(--serif); font-style:italic; font-weight:300; font-size:64px; line-height:1; color:var(--sand-soft);">255&nbsp;m²</div>
+          </div>
+        </div>
+        <div class="infra-card" style="overflow:hidden;">
+          <img src="assets/villa-3.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+          <div class="infra-overlay"></div>
+          <div class="infra-label" style="flex-direction:row; align-items:flex-end; justify-content:space-between; gap:24px;">
+            <div class="infra-name">Villa · Type 4</div>
+            <div style="font-family:var(--serif); font-style:italic; font-weight:300; font-size:64px; line-height:1; color:var(--sand-soft);">400&nbsp;m²</div>
+          </div>
+        </div>
+        <div class="infra-card" style="overflow:hidden;">
+          <img src="assets/villa-4.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+          <div class="infra-overlay"></div>
+          <div class="infra-label" style="flex-direction:row; align-items:flex-end; justify-content:space-between; gap:24px;">
+            <div class="infra-name">Villa · Type 5</div>
+            <div style="font-family:var(--serif); font-style:italic; font-weight:300; font-size:64px; line-height:1; color:var(--sand-soft);">500&nbsp;m²</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="29a Villa Type 1 fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/villa-1.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Choose your villa</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Villa · Type&nbsp;1.</h2></div>
+        <p class="amenity-desc">250&nbsp;m². A compact form, considered layout, focused on the terrace and the view.</p>
+      </div>
+    </div>
+  </section>
+
+<section data-label="29a Villa Type 1 plan">
+    <div class="slide" style="padding:0; position:relative; background:#FFFFFF;">
+      <img src="assets/villa-1-plan.png" alt="Floor plan — Villa Type 1" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center;" />
+    </div>
+  </section>
+
+<section data-label="29b Villa Type 2 fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/villa-2.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Choose your villa</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Villa · Type&nbsp;2.</h2></div>
+        <p class="amenity-desc">255&nbsp;m². An extended terrace and more light in the shared areas.</p>
+      </div>
+    </div>
+  </section>
+
+<section data-label="29b Villa Type 2 plan">
+    <div class="slide" style="padding:0; position:relative; background:#FFFFFF;">
+      <img src="assets/villa-2-plan.png" alt="Floor plan — Villa Type 2" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center;" />
+    </div>
+  </section>
+
+<section data-label="29c Villa Type 3 fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/villa-3.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Choose your villa</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Villa · Type&nbsp;4.</h2></div>
+        <p class="amenity-desc">400&nbsp;m². Space for the whole family: separate lounge areas, a study and a guest bedroom.</p>
+      </div>
+    </div>
+  </section>
+
+<section data-label="29c Villa Type 3 plan">
+    <div class="slide" style="padding:0; position:relative; background:#FFFFFF;">
+      <img src="assets/villa-3-plan.png" alt="Floor plan — Villa Type 3" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center;" />
+    </div>
+  </section>
+
+<section data-label="29d Villa Type 4 fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/villa-4.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.35) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0) 55%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;"><div class="eyebrow" style="color:var(--sand-soft);">Choose your villa</div><h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Villa · Type&nbsp;5.</h2></div>
+        <p class="amenity-desc">500&nbsp;m². The flagship villa: maximum privacy, rooms and space for every scenario.</p>
+      </div>
+    </div>
+  </section>
+
+<section data-label="29d Villa Type 4 plan">
+    <div class="slide" style="padding:0; position:relative; background:#FFFFFF;">
+      <img src="assets/villa-4-plan.png" alt="Floor plan — Villa Type 4" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center;" />
+    </div>
+  </section>
+
+<section data-label="24 Landscape seasons">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <img src="assets/landscape.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,12,10,0.55) 0%, rgba(10,12,10,0.1) 35%, rgba(10,12,10,0) 60%, rgba(10,12,10,0.3) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div class="stack" style="gap:24px;">
+          <div class="eyebrow" style="color:var(--sand-soft);">Bespoke landscape</div>
+          <h2 class="title" style="font-size:96px; line-height:1; color:var(--cream); max-width:24ch;">A garden that delights all year.</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="23b Master plan">
+    <div class="slide" style="padding:0; position:relative; background:#FFFFFF;">
+      <img src="assets/master-plan.png" alt="Master plan — Lion Hills" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center;" />
+      <div style="position:absolute; top:48px; left:var(--pad-x); right:var(--pad-x); display:flex; justify-content:flex-end; align-items:center; z-index:2; font-family:var(--sans); font-size:18px; font-weight:500; text-transform:uppercase;">
+        <span style="letter-spacing:0.18em; color:var(--ink);">Master plan</span>
+      </div>
+    </div>
+  </section>
+
+<section data-label="25 Closing ready">
+    <div class="slide ink" style="padding:0; position:relative;">
+      <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        <source src="assets/closing-bg.mp4" type="video/mp4" />
+      </video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.55) 0%, rgba(15,18,16,0.25) 40%, rgba(15,18,16,0.85) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between; color:var(--cream);">
+        <div class="header" style="color:rgba(244,239,230,0.85);">
+          <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+          <span>Completion</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:40px;">
+          <div class="eyebrow" style="color:var(--sand-soft);">Project completion</div>
+          <h1 class="display" style="font-size:160px; line-height:0.9;">2027 —<br/>the start of a new<br/>way of living.</h1>
+          <p class="lead" style="max-width:30ch; color:#D9D4C7;">
+            The number of villas is limited.
+          </p>
+        </div>
+        <div class="footer" style="color:rgba(244,239,230,0.85);">
+          <span class="wordmark">Lion<span class="dot"></span>Hills</span>
+          <span>Thank you</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<a class="lang-toggle" href="Lion Hills.html" aria-label="Switch to Ukrainian">UA</a>
+<script>
+  (function(){
+    var btn = document.querySelector('.lang-toggle');
+    var deck = document.querySelector('deck-stage');
+    function sync(i){ btn.style.display = (i === 0) ? 'inline-flex' : 'none'; }
+    deck.addEventListener('slidechange', function(e){ sync(e.detail.index); });
+    sync(0);
+  })();
+</script>
+
+<script src="deck-stage.js"></script>
+</body>
+</html>
