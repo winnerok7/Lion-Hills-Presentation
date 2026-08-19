@@ -418,6 +418,9 @@
     font-weight: 400;
     line-height: 1.05;
   }
+  .mini-list { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .mini-list li { font-family: var(--sans); font-size: 24px; line-height: 1.4; padding-left: 20px; position: relative; }
+  .mini-list li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.55; }
   .pillar .desc {
     font-family: var(--sans);
     font-size: 24px;
@@ -806,43 +809,33 @@
       <div class="twocol" style="margin-top:60px; gap:120px;">
         <div class="col" style="gap:40px; justify-content:flex-start;">
           <div class="eyebrow">Концепція</div>
-          <h1 class="display" style="font-size:132px;">П'ять<br/>китів.</h1>
+          <h1 class="display" style="font-size:132px;">Основні<br/>переваги.</h1>
         </div>
         <div class="col">
           <ol class="pillars">
             <li class="pillar">
               <div class="n">01</div>
               <div>
-                <div class="name">Природа і краєвиди</div>
-                <div class="desc">Видові пагорби в оточенні Голосіївського заповідника.</div>
+                <div class="name">Місце</div>
+                <div class="desc">Видові пагорби біля Голосіївського заповідника, 15 хвилин до Печерська без світлофорів.</div>
               </div>
             </li>
             <li class="pillar">
               <div class="n">02</div>
-              <div>
-                <div class="name">Місцерозташування</div>
-                <div class="desc">15 хвилин до Печерська. Одна дорога без світлофорів.</div>
-              </div>
-            </li>
-            <li class="pillar">
-              <div class="n">03</div>
-              <div>
-                <div class="name">Архітектура</div>
-                <div class="desc">Терасна архітектура. Краєвид + приватність.</div>
-              </div>
-            </li>
-            <li class="pillar">
-              <div class="n">04</div>
               <div>
                 <div class="name">Інфраструктура</div>
                 <div class="desc">Спа, спортзал, Infinity pool, ресторан Belkin, Kids Club.</div>
               </div>
             </li>
             <li class="pillar">
-              <div class="n">05</div>
+              <div class="n">03</div>
               <div>
-                <div class="name">Вілли</div>
-                <div class="desc">Автономні, з натуральних матеріалів. Тераси на 9 місяців на рік.</div>
+                <div class="name">Архітектура</div>
+                <ul class="mini-list">
+                  <li>Приватність кожної вілли завдяки терасній композиції</li>
+                  <li>Продумана безпека території</li>
+                  <li>Комплектація вілл — від автономних інженерних систем до готового оздоблення</li>
+                </ul>
               </div>
             </li>
           </ol>
@@ -892,23 +885,19 @@
   </section>
 
 <section data-label="09 Lisnyky edge">
-    <div class="slide dark">
-      <div class="header">
+    <div class="slide dark" style="position:relative;">
+      <div class="header" style="position:relative; z-index:2;">
         <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
         <span>02&nbsp;·&nbsp;Місцерозташування</span>
       </div>
-      <div class="twocol" style="margin-top:80px; gap:120px;">
-        <div class="col" style="justify-content:center; gap:48px;">
-          <div class="eyebrow">Лісники</div>
-          <h2 class="title">Буквально<br/>на міській межі.</h2>
-          <p class="body" style="max-width:30ch; color:#D9D4C7;">
-            За нами починається заповідник. Перед нами — місто.
-          </p>
-        </div>
-        <div class="col">
-          <img src="assets/location-map-v2.png" alt="Карта Lion Hills" style="width:100%; height:100%; object-fit:contain; display:block;" />
-        </div>
+      <div style="position:relative; z-index:2; max-width:44%; height:100%; display:flex; flex-direction:column; justify-content:center; gap:48px;">
+        <div class="eyebrow">Лісники</div>
+        <h2 class="title">Буквально<br/>на міській межі.</h2>
+        <p class="body" style="max-width:30ch; color:#D9D4C7;">
+          За нами починається заповідник. Перед нами — місто.
+        </p>
       </div>
+      <img src="assets/location-map-v3.png" alt="Карта Lion Hills" style="position:absolute; top:0; right:0; width:52%; height:100%; object-fit:fill; z-index:1;" />
     </div>
   </section>
 
@@ -942,9 +931,9 @@
         <div></div>
         <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:80px;">
           <div class="stack" style="gap:32px;">
-                        <div class="sect-title">Інфра-<br/>структура.</div>
+            <div class="sect-title" style="white-space:nowrap;">Інфраструктура.</div>
           </div>
-          <div class="sect-sub" style="max-width:20ch; text-align:right; line-height:1.5;">Equides&nbsp;·&nbsp;Спа&nbsp;·&nbsp;Сервіс</div>
+          <div class="sect-sub" style="max-width:20ch; text-align:right; line-height:1.5;"></div>
         </div>
       </div>
     </div>
@@ -996,7 +985,7 @@
         <span>04&nbsp;·&nbsp;Інфраструктура</span>
       </div>
       <div class="stack" style="gap:20px; margin-top:32px;">
-        <div class="eyebrow">Через дорогу — Equides</div>
+        <div class="eyebrow">За територією комплексу</div>
         <h2 class="title" style="font-size:64px; max-width:28ch;">Вийшли за ворота —<br/>і ви вже там.</h2>
       </div>
       <div class="infra-grid">
@@ -1006,28 +995,28 @@
             <div class="infra-name">Гольф‑поле на 18 лунок</div>
           </div>
         </div>
-        <div class="infra-card" style="background-image:url('assets/equides-horse.jpg');">
+        <div class="infra-card" style="background-image:url('assets/silpo.jpg');">
           <div class="infra-overlay"></div>
           <div class="infra-label">
-            <div class="infra-name">Два кінних клуби</div>
-          </div>
-        </div>
-        <div class="infra-card" style="background-image:url('assets/equides-spa.jpg');">
-          <div class="infra-overlay"></div>
-          <div class="infra-label">
-            <div class="infra-name">Спа</div>
+            <div class="infra-name">Сільпо</div>
           </div>
         </div>
         <div class="infra-card" style="background-image:url('assets/equides-restaurant.jpg');">
           <div class="infra-overlay"></div>
           <div class="infra-label">
-            <div class="infra-name">Ресторан</div>
+            <div class="infra-name">Ресторан Belkin</div>
           </div>
         </div>
-        <div class="infra-card" style="background-image:url('assets/equides-padel.jpg');">
+        <div class="infra-card" style="background-image:url('assets/school.jpg');">
           <div class="infra-overlay"></div>
           <div class="infra-label">
-            <div class="infra-name">9 падел‑кортів &amp; стрілецький тир</div>
+            <div class="infra-name">Американська школа</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/feofania.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Парк Феофанія</div>
           </div>
         </div>
         <div class="infra-card" style="background-image:url('assets/equides-hotel.jpg');">
@@ -1039,6 +1028,61 @@
       </div>
       <div class="footer mt-auto" style="margin-top:40px;">
         <span>«Гольф або падел змінює ставлення до активного відпочинку»</span>
+        <span>Lion&nbsp;Hills</span>
+      </div>
+    </div>
+  </section>
+
+<section data-label="15b Equides continued">
+    <div class="slide" style="padding:80px var(--pad-x);">
+      <div class="header">
+        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
+        <span>04&nbsp;·&nbsp;Інфраструктура</span>
+      </div>
+      <div class="stack" style="gap:20px; margin-top:32px;">
+        <div class="eyebrow">За територією комплексу</div>
+        <h2 class="title" style="font-size:64px; max-width:28ch;">І це ще<br/>не все.</h2>
+      </div>
+      <div class="infra-grid">
+        <div class="infra-card" style="background-image:url('assets/equides-horse.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Кінний клуб</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/sinevo.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Сінево</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/equides-padel.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">9 падел‑кортів</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/manufaktura.jpeg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Manufaktura ТРЦ</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/holosiivskyi-park.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Парк Голосіївський</div>
+          </div>
+        </div>
+        <div class="infra-card" style="background-image:url('assets/olympic-village.jpg');">
+          <div class="infra-overlay"></div>
+          <div class="infra-label">
+            <div class="infra-name">Olympic village</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer mt-auto" style="margin-top:40px;">
+        <span>Усе поруч. Нічого зайвого.</span>
         <span>Lion&nbsp;Hills</span>
       </div>
     </div>
@@ -1215,7 +1259,60 @@
           <div class="stack" style="gap:32px;">
                         <div class="sect-title">Природа<br/>і краєвиди.</div>
           </div>
-          <div class="sect-sub" style="max-width:32ch; text-align:right; line-height:1.5;">Голосіївський заповідник<br/>Видові пагорби</div>
+          <div class="sect-sub" style="max-width:32ch; text-align:right; line-height:1.5;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="06b Nature video description">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        <source src="assets/nature1.mp4" type="video/mp4" />
+      </video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0.15) 0%, rgba(15,18,16,0) 35%, rgba(15,18,16,0.35) 65%, rgba(15,18,16,0.88) 100%), linear-gradient(90deg, rgba(0,0,0,0.54) 0%, rgba(0,0,0,0) 58%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-end;">
+        <div style="display:flex; flex-direction:column; gap:20px; max-width:56ch;">
+          <p class="body" style="color:var(--cream); margin:0;">Локація Lion Hills була обрана не випадково. Ми шукали місце, де можна поєднати швидкий доступ до центру Києва та відчуття повного усамітнення серед природи.</p>
+          <p class="body" style="color:var(--cream); margin:0;">Саме тому ми обрали Лісники.</p>
+          <p class="body" style="color:var(--cream); margin:0;">Всього 15 хвилин до Печерська, прямим маршрутом без світлофорів. І водночас одразу за територією Lion Hills розпочинається Голосіївський заповідник, який створює атмосферу тиші, приватності та гармонії з природою.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section data-label="06c Parks video">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream);">
+      <video autoplay loop muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        <source src="assets/parks-drone.mp4" type="video/mp4" />
+      </video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,18,16,0) 0%, rgba(15,18,16,0.15) 55%, rgba(15,18,16,0.65) 100%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x) 48px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-end;">
+        <div style="display:flex; gap:16px;">
+          <div style="position:relative; flex:1; height:182px; border-radius:2px; overflow:hidden; background-image:url('assets/park-holosiivskyi2.webp'); background-size:cover; background-position:center;">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);"></div>
+            <div style="position:absolute; left:14px; right:14px; bottom:12px; font-family:var(--sans); font-weight:500; font-size:20px; line-height:1.25; color:var(--cream);">Парк Голосіївський</div>
+          </div>
+          <div style="position:relative; flex:1; height:182px; border-radius:2px; overflow:hidden; background-image:url('assets/park-feofaniya2.jpg'); background-size:cover; background-position:center;">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);"></div>
+            <div style="position:absolute; left:14px; right:14px; bottom:12px; font-family:var(--sans); font-weight:500; font-size:20px; line-height:1.25; color:var(--cream);">Парк Феофанія</div>
+          </div>
+          <div style="position:relative; flex:1; height:182px; border-radius:2px; overflow:hidden; background-image:url('assets/park-kruhlyk.webp'); background-size:cover; background-position:center;">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);"></div>
+            <div style="position:absolute; left:14px; right:14px; bottom:12px; font-family:var(--sans); font-weight:500; font-size:20px; line-height:1.25; color:var(--cream);">Озеро Круглик</div>
+          </div>
+          <div style="position:relative; flex:1; height:182px; border-radius:2px; overflow:hidden; background-image:url('assets/park-bezodnya.jpg'); background-size:cover; background-position:center;">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);"></div>
+            <div style="position:absolute; left:14px; right:14px; bottom:12px; font-family:var(--sans); font-weight:500; font-size:20px; line-height:1.25; color:var(--cream);">Урочище Безодня</div>
+          </div>
+          <div style="position:relative; flex:1; height:182px; border-radius:2px; overflow:hidden; background-image:url('assets/park-khodosivka.jpg'); background-size:cover; background-position:center;">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);"></div>
+            <div style="position:absolute; left:14px; right:14px; bottom:12px; font-family:var(--sans); font-weight:500; font-size:20px; line-height:1.25; color:var(--cream);">Озеро Ходосівка</div>
+          </div>
+          <div style="position:relative; flex:1; height:182px; border-radius:2px; overflow:hidden; background-image:url('assets/park-lisnyky-trail.jpg'); background-size:cover; background-position:center;">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);"></div>
+            <div style="position:absolute; left:14px; right:14px; bottom:12px; font-family:var(--sans); font-weight:500; font-size:20px; line-height:1.25; color:var(--cream);">Екологічна стежка «Лісники»</div>
+          </div>
         </div>
       </div>
     </div>
@@ -1394,40 +1491,29 @@
     </div>
   </section>
 
-<section data-label="22 Autonomy">
-    <div class="slide">
-      <div class="header">
-        <span class="brand">Lion&nbsp;·&nbsp;Hills</span>
-        <span>05&nbsp;·&nbsp;Вілли</span>
-      </div>
-      <div class="twocol" style="margin-top:60px;">
-        <div class="col" style="gap:40px; justify-content:center;">
-          <div class="eyebrow">Автономність</div>
-          <h2 class="title" style="font-size:80px;">Автономність<br/>без компромісів.</h2>
-          <p class="body" style="max-width:32ch;">
-            Кожна вілла працює незалежно від міських мереж.
-          </p>
+<section data-label="24e Safe room fullbleed">
+    <div class="slide" style="padding:0; position:relative; color:var(--cream); background:#111710;">
+      <img src="assets/safe-room.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,11,8,0.30) 0%, rgba(8,11,8,0.20) 40%, rgba(8,11,8,0.70) 100%), linear-gradient(270deg, rgba(8,11,8,0.20) 0%, rgba(8,11,8,0) 25%);"></div>
+      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; align-items:stretch; justify-content:space-between;">
+        <div style="display:flex; flex-direction:column; justify-content:space-between; max-width:40ch; flex-shrink:0;">
+          <h2 class="title" style="font-size:56px; line-height:1.15; color:var(--cream); margin:0; white-space:nowrap;">100% автономні системи<br/>та Safe Room</h2>
+          <p class="body" style="max-width:30ch; color:#D9D4C7; margin:0;">Кожна вілла працює незалежно від міських мереж.</p>
         </div>
-        <div class="col" style="gap:0;">
-          <div style="display:grid; grid-template-columns: 1fr; gap:0; border-top:1px solid rgba(31,42,36,0.18); border-left:1px solid rgba(31,42,36,0.18); border-right:1px solid rgba(31,42,36,0.18);">
-            <div style="padding:32px 28px; border-bottom:1px solid rgba(31,42,36,0.18);">
-              <div class="caps" style="color:var(--sand);">Вода</div>
-              <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25;">Власна свердловина&nbsp;·&nbsp;86&nbsp;м<br/>Бучацький водоносний горизонт</div>
-            </div>
-            <div style="padding:32px 28px; border-bottom:1px solid rgba(31,42,36,0.18);">
-              <div class="caps" style="color:var(--sand);">Очистка</div>
-              <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25;">Система Allbau&nbsp;Tech<br/>Замкнутий цикл</div>
-            </div>
-            <div style="padding:32px 28px; border-bottom:1px solid rgba(31,42,36,0.18);">
-              <div class="caps" style="color:var(--sand);">Енергія</div>
-              <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25;">Газ&nbsp;·&nbsp;Сонячні панелі<br/>Резервний генератор</div>
-            </div>
+        <div style="align-self:flex-end; width:520px; text-align:right; display:grid; grid-template-columns:1fr; gap:0; border-top:1px solid rgba(244,239,230,0.22); border-left:1px solid rgba(244,239,230,0.22); border-right:1px solid rgba(244,239,230,0.22);">
+          <div style="padding:32px 28px; border-bottom:1px solid rgba(244,239,230,0.22);">
+            <div class="caps" style="color:var(--sand-soft);">Вода</div>
+            <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25; color:var(--cream);">Власна свердловина&nbsp;·&nbsp;86&nbsp;м<br/>Бучацький водоносний горизонт</div>
+          </div>
+          <div style="padding:32px 28px; border-bottom:1px solid rgba(244,239,230,0.22);">
+            <div class="caps" style="color:var(--sand-soft);">Очистка</div>
+            <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25; color:var(--cream);">Система Allbau&nbsp;Tech<br/>Замкнутий цикл</div>
+          </div>
+          <div style="padding:32px 28px; border-bottom:1px solid rgba(244,239,230,0.22);">
+            <div class="caps" style="color:var(--sand-soft);">Енергія</div>
+            <div style="font-family:var(--sans); font-weight:500; font-size:30px; margin-top:14px; line-height:1.25; color:var(--cream);">Газ&nbsp;·&nbsp;Сонячні панелі<br/>Резервний генератор</div>
           </div>
         </div>
-      </div>
-      <div class="footer mt-auto" style="margin-top:60px;">
-        <span>05&nbsp;·&nbsp;Вілли</span>
-        <span>Lion&nbsp;Hills</span>
       </div>
     </div>
   </section>
@@ -1454,20 +1540,6 @@
             <li><span>Кімната безпеки</span></li>
           </ul>
         </div>
-      </div>
-    </div>
-  </section>
-
-<section data-label="24e Safe room fullbleed">
-    <div class="slide" style="padding:0; position:relative; color:var(--cream); background:#111710;">
-      <img src="assets/safe-room.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;" />
-      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,11,8,0.55) 0%, rgba(8,11,8,0.15) 40%, rgba(8,11,8,0.75) 100%);"></div>
-      <div style="position:relative; z-index:2; width:100%; height:100%; padding:var(--pad-y) var(--pad-x); box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start;">
-        <div style="display:flex; flex-direction:column; gap:20px; max-width:1200px;">
-          <div class="eyebrow" style="color:var(--sand-soft);">Анатомія вілли</div>
-          <h2 class="title" style="font-size:120px; line-height:0.95; color:var(--cream);">Кімната<br/>безпеки.</h2>
-        </div>
-        <p class="amenity-desc">Захищений простір, вбудований у конструкцію вілли. Бронедвері, незалежна вентиляція, резервне живлення та зв’язок.</p>
       </div>
     </div>
   </section>
